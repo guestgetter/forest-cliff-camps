@@ -400,7 +400,7 @@ function upd() {
   if (!pw) return;
   if (prog && gv("a")) {
     const n = gv("c") ? gv("c") + "'s" : "your child's";
-    pw.innerHTML = `<div class="fade-in" style="margin-top:10px;padding:10px 14px;background:rgba(45,90,63,0.05);border-radius:8px;border:1px solid rgba(45,90,63,0.1)"><div style="font-size:14px;color:#5a7a5a;line-height:1.5"><strong style="color:var(--forest)">How it works:</strong> $${D} reserves the spot → we email session dates for ${n} age group within 24 hrs → pick up to 5 weeks → done.</div></div>`;
+    pw.innerHTML = `<div class="fade-in" style="margin-top:10px;padding:10px 14px;background:rgba(45,90,63,0.05);border-radius:8px;border:1px solid rgba(45,90,63,0.1)"><div style="font-size:14px;color:#5a7a5a;line-height:1.5"><strong style="color:var(--forest)">How it works:</strong> $${D} locks in ${n} spot → you pick up to 5 preferred weeks → we save your seat.</div></div>`;
   } else {
     pw.innerHTML = "";
   }
