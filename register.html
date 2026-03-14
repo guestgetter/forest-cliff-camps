@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Pick Your Camp Dates — Forest Cliff Camps</title>
+<meta name="description" content="Choose your preferred camp weeks at Forest Cliff Camps.">
+<meta name="robots" content="noindex, nofollow">
+
+<!-- ═══ META PIXEL ═══ -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#1b3c2a;--pine:#2d5a3f;--sage:#5a8a6a;--meadow:#8abb92;
+  --ember:#cc581f;--ember-glow:#e07c3e;--sunlight:#f2c94c;
+  --cream:#faf8f4;--sand:#e8e3d8;--stone:#b5ae9e;
+  --dark:#1a1a1a;--med:#4a4a4a;--light:#777;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-size:16px}
+body{background:var(--cream);font-family:'Outfit',sans-serif;color:var(--dark);-webkit-font-smoothing:antialiased;font-size:18px;line-height:1.6;min-height:100vh}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes breathe{0%,100%{box-shadow:0 4px 20px rgba(204,88,31,0.3)}50%{box-shadow:0 8px 32px rgba(204,88,31,0.55)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes checkmark{0%{transform:scale(0) rotate(-45deg);opacity:0}50%{transform:scale(1.2) rotate(-45deg);opacity:1}100%{transform:scale(1) rotate(-45deg);opacity:1}}
+@keyframes confettiDrop{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(60px) rotate(360deg);opacity:0}}
+.fade-in{animation:fadeIn .4s ease-out both}
+
+/* ═══ HEADER ═══ */
+.top-bar{background:var(--forest);padding:16px 24px;display:flex;align-items:center;justify-content:space-between}
+.top-bar .logo{font-family:'Fraunces',serif;font-size:18px;font-weight:700;color:#fff}
+.top-bar .step-label{font-size:13px;color:rgba(255,255,255,0.6);display:flex;align-items:center;gap:6px}
+
+/* ═══ PROGRESS ═══ */
+.progress{display:flex;align-items:center;gap:0;margin-bottom:32px;padding:0 4px}
+.progress-step{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--stone)}
+.progress-step.active{color:var(--forest)}
+.progress-step.done{color:var(--sage)}
+.progress-dot{width:28px;height:28px;border-radius:50%;border:2px solid var(--sand);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--stone);background:#fff;flex-shrink:0}
+.progress-step.active .progress-dot{border-color:var(--ember);background:var(--ember);color:#fff}
+.progress-step.done .progress-dot{border-color:var(--sage);background:var(--sage);color:#fff}
+.progress-line{flex:1;height:2px;background:var(--sand);margin:0 8px}
+.progress-line.done{background:var(--sage)}
+@media(max-width:600px){.progress-step span{display:none}.progress{justify-content:center}}
+
+/* ═══ LAYOUT ═══ */
+.page{max-width:800px;margin:0 auto;padding:40px 24px 60px}
+@media(max-width:600px){.page{padding:24px 16px 40px}}
+
+.page-title{font-family:'Fraunces',serif;font-size:clamp(24px,4vw,32px);font-weight:700;color:var(--forest);margin-bottom:6px}
+.page-sub{font-size:16px;color:var(--light);margin-bottom:8px;line-height:1.6}
+.child-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(45,90,63,0.06);border:1px solid rgba(45,90,63,0.12);padding:6px 14px;border-radius:20px;font-size:14px;font-weight:600;color:var(--pine);margin-bottom:28px}
+
+/* ═══ PROGRAM TABS ═══ */
+.program-tabs{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap}
+.program-tab{padding:10px 20px;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;border:2px solid var(--sand);background:#fff;color:var(--dark);font-family:inherit;transition:all .15s}
+.program-tab:hover{border-color:var(--pine)}
+.program-tab.active{background:var(--forest);color:#fff;border-color:var(--forest)}
+
+/* ═══ SESSION CARDS ═══ */
+.sessions{display:grid;gap:12px;margin-bottom:32px}
+.session-card{background:#fff;border:2px solid var(--sand);border-radius:14px;padding:20px;cursor:pointer;transition:all .2s;display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;user-select:none}
+.session-card:hover{border-color:var(--pine);transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,0.06)}
+.session-card.selected{border-color:var(--ember);background:rgba(204,88,31,0.02);box-shadow:0 4px 16px rgba(204,88,31,0.12)}
+.session-card.unavailable{opacity:0.5;cursor:default;pointer-events:none}
+.session-card.unavailable:hover{transform:none;box-shadow:none}
+
+.sc-check{width:24px;height:24px;border-radius:50%;border:2px solid var(--sand);display:flex;align-items:center;justify-content:center;font-size:12px;color:transparent;transition:all .2s;flex-shrink:0}
+.session-card.selected .sc-check{border-color:var(--ember);background:var(--ember);color:#fff}
+
+.sc-info h4{font-size:16px;font-weight:700;color:var(--dark);margin-bottom:2px}
+.sc-info .sc-dates{font-size:14px;color:var(--med);font-weight:500}
+.sc-info .sc-detail{font-size:13px;color:var(--light);margin-top:4px;display:flex;flex-wrap:wrap;gap:8px}
+.sc-info .sc-detail span{display:inline-flex;align-items:center;gap:4px}
+
+.sc-meta{text-align:right;flex-shrink:0}
+.sc-meta .sc-avail{font-size:12px;font-weight:600;padding:4px 10px;border-radius:12px;white-space:nowrap}
+.sc-meta .sc-avail.open{background:rgba(138,187,146,0.15);color:var(--pine)}
+.sc-meta .sc-avail.limited{background:rgba(204,88,31,0.1);color:var(--ember)}
+.sc-meta .sc-avail.full{background:rgba(180,180,180,0.15);color:var(--stone)}
+.sc-meta .sc-grade{font-size:12px;color:var(--stone);margin-top:4px}
+
+@media(max-width:600px){
+  .session-card{grid-template-columns:auto 1fr;gap:12px}
+  .sc-meta{grid-column:2;text-align:left}
+}
+
+/* ═══ SELECTION COUNTER ═══ */
+.selection-bar{position:sticky;bottom:0;background:rgba(250,248,244,0.97);backdrop-filter:blur(12px);border-top:1px solid var(--sand);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;z-index:10}
+.sel-count{font-size:15px;color:var(--med);font-weight:500}
+.sel-count strong{color:var(--forest);font-weight:700}
+.sel-count .max-hint{font-size:13px;color:var(--stone);display:block}
+.sel-btn{padding:16px 32px;border-radius:12px;border:none;color:#fff;font-size:17px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .2s;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.sel-btn.active{background:var(--ember);animation:breathe 2.5s ease-in-out infinite}
+.sel-btn.active:hover{background:#b84e18}
+.sel-btn.disabled{background:#c4bfb0;cursor:default;animation:none}
+.sel-btn .spinner{width:20px;height:20px;border:3px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite}
+
+/* ═══ ADD CAMPER ═══ */
+.add-camper{margin-bottom:32px}
+.add-camper-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:10px;border:2px dashed var(--sand);background:transparent;color:var(--pine);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s}
+.add-camper-btn:hover{border-color:var(--pine);background:rgba(45,90,63,0.03)}
+
+/* ═══ HELPER TEXT ═══ */
+.helper{background:rgba(45,90,63,0.04);border:1px solid rgba(45,90,63,0.08);border-radius:10px;padding:14px 16px;margin-bottom:24px;display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--med);line-height:1.5}
+.helper .h-icon{font-size:18px;flex-shrink:0}
+.helper strong{color:var(--forest);font-weight:600}
+
+/* ═══ SUCCESS STATE ═══ */
+.success-overlay{position:fixed;inset:0;background:rgba(250,248,244,0.97);z-index:100;display:flex;align-items:center;justify-content:center;animation:fadeIn .3s ease-out}
+.success-content{max-width:520px;text-align:center;padding:40px 24px}
+.success-check{width:72px;height:72px;border-radius:50%;background:var(--meadow);margin:0 auto 24px;display:flex;align-items:center;justify-content:center}
+.success-check::after{content:'';display:block;width:24px;height:12px;border-left:3px solid #fff;border-bottom:3px solid #fff;animation:checkmark .4s ease-out .2s both}
+.success-content h2{font-family:'Fraunces',serif;font-size:28px;font-weight:700;color:var(--forest);margin-bottom:10px}
+.success-content .sub{font-size:16px;color:var(--light);margin-bottom:32px;line-height:1.6}
+.timeline{background:#fff;border-radius:14px;border:1px solid var(--sand);padding:24px;text-align:left;margin-bottom:24px}
+.timeline-label{font-size:11px;font-weight:700;color:var(--pine);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:14px}
+.tl-item{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
+.tl-item:last-child{margin-bottom:0}
+.tl-time{width:56px;flex-shrink:0;font-size:11px;font-weight:700;text-align:right;padding-top:3px}
+.tl-time.now{color:var(--ember)}
+.tl-time.soon{color:var(--sage)}
+.tl-time.later{color:var(--stone)}
+.tl-dot-col{display:flex;flex-direction:column;align-items:center;flex-shrink:0;padding-top:4px}
+.tl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.tl-dot.active{background:var(--ember)}
+.tl-dot.upcoming{background:var(--sand)}
+.tl-line{width:2px;height:16px;background:var(--sand);margin-top:2px}
+.tl-text{font-size:14px;line-height:1.5}
+.tl-text.highlight{color:var(--dark);font-weight:600}
+.tl-text.normal{color:var(--light)}
+
+.share-card{background:linear-gradient(135deg,var(--forest),var(--pine));border-radius:14px;padding:20px;color:#fff}
+.share-card h3{font-size:16px;font-weight:700;margin-bottom:4px}
+.share-card p{font-size:14px;opacity:0.7;margin-bottom:12px}
+.share-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.15);color:#fff;padding:10px 20px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s}
+.share-btn:hover{background:rgba(255,255,255,0.25)}
+</style>
+</head>
+<body>
+
+<!-- ═══ TOP BAR ═══ -->
+<div class="top-bar">
+  <div class="logo">🌲 Forest Cliff Camps</div>
+  <div class="step-label">Step 3 of 3</div>
+</div>
+
+<!-- ═══ PAGE ═══ -->
+<div class="page">
+  <!-- PROGRESS BAR -->
+  <div class="progress">
+    <div class="progress-step done"><div class="progress-dot">✓</div><span>Info</span></div>
+    <div class="progress-line done"></div>
+    <div class="progress-step done"><div class="progress-dot">✓</div><span>Deposit</span></div>
+    <div class="progress-line done"></div>
+    <div class="progress-step active"><div class="progress-dot">3</div><span>Pick Dates</span></div>
+  </div>
+
+  <h1 class="page-title">Pick <span id="childNameTitle"></span>'s camp weeks</h1>
+  <p class="page-sub">Select up to <strong>5 preferred weeks</strong> — we'll confirm your top choice based on availability.</p>
+  <div class="child-pill" id="childPill">🏕️ <span id="childInfo"></span></div>
+
+  <div class="helper">
+    <span class="h-icon">💡</span>
+    <div><strong>Tip:</strong> Picking more weeks gives you better chances. We'll do our best to get your #1 choice — and we'll reach out if we need to adjust.</div>
+  </div>
+
+  <!-- PROGRAM TABS -->
+  <div class="program-tabs" id="programTabs"></div>
+
+  <!-- SESSION CARDS -->
+  <div class="sessions" id="sessionList"></div>
+
+  <!-- ADD ANOTHER CAMPER -->
+  <div class="add-camper">
+    <button class="add-camper-btn" onclick="addCamper()">
+      + Register another child
+    </button>
+  </div>
+</div>
+
+<!-- ═══ STICKY BOTTOM BAR ═══ -->
+<div class="selection-bar" id="selectionBar" style="display:none">
+  <div class="sel-count">
+    <strong><span id="selCount">0</span> week(s) selected</strong>
+    <span class="max-hint">up to 5 — more = better chance of your #1</span>
+  </div>
+  <button class="sel-btn disabled" id="selBtn" onclick="submitSelections()">
+    Confirm Selections →
+  </button>
+</div>
+
+<!-- ═══════════════════════════════════════
+     CONFIGURATION & SCRIPTS
+     ═══════════════════════════════════════ -->
+<script>
+const CONFIG = {
+  HIGHLEVEL_WEBHOOK_URL: '',    // HighLevel webhook for session-selection event
+  META_PIXEL_ID: '',            // Facebook Pixel ID
+};
+
+/* ═══ CAMP SESSION DATA ═══
+   Update these each season. Availability values: "open", "limited", "full"
+   ═══════════════════════════ */
+const SESSIONS = {
+  overnight: [
+    { id: 'oc1', name: 'Kids Camp — Week 1', dates: 'June 28 – July 3', grades: 'Gr. 1–7', nights: '5 nights', avail: 'open', spots: 'Spots available' },
+    { id: 'oc2', name: 'Kids Camp — Week 2', dates: 'July 5 – July 10', grades: 'Gr. 1–7', nights: '5 nights', avail: 'open', spots: 'Spots available' },
+    { id: 'oc3', name: 'Kids Camp — Week 3', dates: 'July 12 – July 17', grades: 'Gr. 1–7', nights: '5 nights', avail: 'limited', spots: 'Filling fast' },
+    { id: 'oc4', name: 'Kids Camp — Week 4', dates: 'July 19 – July 24', grades: 'Gr. 1–7', nights: '5 nights', avail: 'open', spots: 'Spots available' },
+    { id: 'oc5', name: 'Kids Camp — Week 5', dates: 'July 26 – July 31', grades: 'Gr. 1–7', nights: '5 nights', avail: 'limited', spots: 'Filling fast' },
+    { id: 'oc6', name: 'Kids Camp — Week 6', dates: 'Aug 2 – Aug 7', grades: 'Gr. 1–7', nights: '5 nights', avail: 'open', spots: 'Spots available' },
+    { id: 'oc7', name: 'Kids Camp — Week 7', dates: 'Aug 9 – Aug 14', grades: 'Gr. 1–7', nights: '5 nights', avail: 'open', spots: 'Spots available' },
+    { id: 'jc1', name: 'Junior Camp — Session 1', dates: 'July 8 – July 10', grades: 'Gr. 1–3', nights: '2 nights', avail: 'limited', spots: 'Almost full' },
+    { id: 'jc2', name: 'Junior Camp — Session 2', dates: 'July 22 – July 24', grades: 'Gr. 1–3', nights: '2 nights', avail: 'open', spots: 'Spots available' },
+    { id: 'jc3', name: 'Junior Camp — Session 3', dates: 'Aug 5 – Aug 7', grades: 'Gr. 1–3', nights: '2 nights', avail: 'open', spots: 'Spots available' },
+    { id: 'jh1', name: 'Jr High Camp — Week 1', dates: 'Aug 2 – Aug 7', grades: 'Gr. 6–8', nights: '5 nights', avail: 'open', spots: 'Spots available' },
+    { id: 'jh2', name: 'Jr High Camp — Week 2', dates: 'Aug 23 – Aug 26', grades: 'Gr. 7–8', nights: '3 nights', avail: 'open', spots: 'Spots available' },
+    { id: 'gw1', name: 'Girls Week', dates: 'July 19 – July 24', grades: 'Gr. 5–8', nights: '5 nights', avail: 'limited', spots: 'Filling fast' },
+    { id: 'salt1', name: 'SALT Leadership', dates: 'Aug 16 – Aug 21', grades: 'Gr. 7–8', nights: '5 nights', avail: 'open', spots: 'Spots available' },
+  ],
+  day: [
+    { id: 'dc1', name: 'Day Camp — Week 1', dates: 'June 29 – July 3', grades: 'SK–Gr. 5', nights: '4 days', avail: 'open', spots: 'Spots available', location: 'London' },
+    { id: 'dc2', name: 'Day Camp — Week 2', dates: 'July 6 – July 10', grades: 'SK–Gr. 5', nights: '5 days', avail: 'open', spots: 'Spots available', location: 'London' },
+    { id: 'dc3', name: 'Day Camp — Week 3', dates: 'July 13 – July 17', grades: 'SK–Gr. 5', nights: '5 days', avail: 'limited', spots: 'Filling fast', location: 'London' },
+    { id: 'dc4', name: 'Day Camp — Week 4', dates: 'July 20 – July 24', grades: 'SK–Gr. 5', nights: '5 days', avail: 'open', spots: 'Spots available', location: 'London' },
+    { id: 'dc5', name: 'Day Camp — Week 5', dates: 'July 27 – July 31', grades: 'SK–Gr. 5', nights: '5 days', avail: 'open', spots: 'Spots available', location: 'London' },
+    { id: 'dc6', name: 'Day Camp — Week 6', dates: 'Aug 4 – Aug 8', grades: 'SK–Gr. 5', nights: '5 days', avail: 'open', spots: 'Spots available', location: 'London' },
+    { id: 'dcl1', name: 'Day Camp at the Lake — Week 1', dates: 'July 6 – July 10', grades: 'SK–Gr. 5', nights: '5 days', avail: 'open', spots: 'Spots available', location: 'Lambton Shores' },
+    { id: 'dcl2', name: 'Day Camp at the Lake — Week 2', dates: 'July 13 – July 17', grades: 'SK–Gr. 5', nights: '5 days', avail: 'limited', spots: 'Filling fast', location: 'Lambton Shores' },
+  ]
+};
+
+/* ═══ READ URL PARAMS ═══ */
+const params = new URLSearchParams(window.location.search);
+const leadData = {
+  parentName: params.get('parentName') || params.get('name') || '',
+  email: params.get('email') || '',
+  phone: params.get('phone') || '',
+  childName: params.get('childName') || params.get('child') || '',
+  childAge: params.get('childAge') || params.get('age') || '',
+  program: params.get('program') || 'both',
+  variant: params.get('variant') || '',
+  utm_source: params.get('utm_source') || '',
+  utm_medium: params.get('utm_medium') || '',
+  utm_campaign: params.get('utm_campaign') || '',
+  utm_content: params.get('utm_content') || '',
+  utm_term: params.get('utm_term') || '',
+  fbclid: params.get('fbclid') || '',
+  gclid: params.get('gclid') || '',
+};
+
+/* ═══ POPULATE HEADER ═══ */
+const childName = leadData.childName || 'your child';
+document.getElementById('childNameTitle').textContent = childName;
+document.getElementById('childInfo').textContent = `${childName}${leadData.childAge ? ', ' + leadData.childAge + ' yrs' : ''} · ${({overnight:'Overnight Camp',day:'Day Camp',both:'Both Programs'})[leadData.program] || 'Camp'}`;
+
+/* ═══ META PIXEL ═══ */
+if (CONFIG.META_PIXEL_ID) {
+  fbq('init', CONFIG.META_PIXEL_ID);
+  fbq('track', 'PageView');
+  fbq('trackCustom', 'DatePickerView', { program: leadData.program, child_age: leadData.childAge });
+}
+
+/* ═══ DATALAYER ═══ */
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({ event: 'date_picker_view', ...leadData });
+
+/* ═══ STATE ═══ */
+let selectedSessions = new Set();
+let activeTab = leadData.program === 'day' ? 'day' : (leadData.program === 'overnight' ? 'overnight' : 'all');
+
+/* ═══ RENDER TABS ═══ */
+function renderTabs() {
+  const tabs = document.getElementById('programTabs');
+  const tabDefs = [
+    { key: 'all', label: 'All Sessions' },
+    { key: 'overnight', label: 'Overnight Camp' },
+    { key: 'day', label: 'Day Camp' }
+  ];
+  // If they selected a specific program, still show all tabs but default to that one
+  tabs.innerHTML = tabDefs.map(t =>
+    `<button class="program-tab${activeTab === t.key ? ' active' : ''}" onclick="switchTab('${t.key}')">${t.label}</button>`
+  ).join('');
+}
+
+function switchTab(tab) {
+  activeTab = tab;
+  renderTabs();
+  renderSessions();
+}
+
+/* ═══ RENDER SESSIONS ═══ */
+function renderSessions() {
+  const list = document.getElementById('sessionList');
+  let sessions = [];
+  if (activeTab === 'all' || activeTab === 'overnight') {
+    sessions = sessions.concat(SESSIONS.overnight.map(s => ({...s, type: 'overnight'})));
+  }
+  if (activeTab === 'all' || activeTab === 'day') {
+    sessions = sessions.concat(SESSIONS.day.map(s => ({...s, type: 'day'})));
+  }
+
+  list.innerHTML = sessions.map(s => {
+    const isSelected = selectedSessions.has(s.id);
+    const isFull = s.avail === 'full';
+    const cardClass = `session-card${isSelected ? ' selected' : ''}${isFull ? ' unavailable' : ''}`;
+    const availClass = s.avail === 'limited' ? 'limited' : (s.avail === 'full' ? 'full' : 'open');
+
+    return `
+      <div class="${cardClass}" onclick="${isFull ? '' : `toggleSession('${s.id}')`}" data-id="${s.id}">
+        <div class="sc-check">${isSelected ? '✓' : ''}</div>
+        <div class="sc-info">
+          <h4>${s.name}</h4>
+          <div class="sc-dates">${s.dates}</div>
+          <div class="sc-detail">
+            <span>📅 ${s.nights}</span>
+            <span>👤 ${s.grades}</span>
+            ${s.location ? `<span>📍 ${s.location}</span>` : '<span>📍 Lambton Shores</span>'}
+          </div>
+        </div>
+        <div class="sc-meta">
+          <div class="sc-avail ${availClass}">${isFull ? 'Full' : s.spots}</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  updateSelectionBar();
+}
+
+/* ═══ TOGGLE SESSION ═══ */
+function toggleSession(id) {
+  if (selectedSessions.has(id)) {
+    selectedSessions.delete(id);
+  } else if (selectedSessions.size < 5) {
+    selectedSessions.add(id);
+  } else {
+    // Max reached — shake the counter
+    const bar = document.getElementById('selectionBar');
+    bar.style.animation = 'none';
+    bar.offsetHeight; // reflow
+    bar.style.animation = '';
+    return;
+  }
+  renderSessions();
+}
+
+/* ═══ SELECTION BAR ═══ */
+function updateSelectionBar() {
+  const bar = document.getElementById('selectionBar');
+  const count = selectedSessions.size;
+  document.getElementById('selCount').textContent = count;
+  bar.style.display = count > 0 ? 'flex' : 'none';
+
+  const btn = document.getElementById('selBtn');
+  btn.className = 'sel-btn ' + (count > 0 ? 'active' : 'disabled');
+}
+
+/* ═══ SUBMIT ═══ */
+async function submitSelections() {
+  if (selectedSessions.size === 0) return;
+
+  const btn = document.getElementById('selBtn');
+  btn.innerHTML = '<div class="spinner"></div>';
+  btn.style.pointerEvents = 'none';
+
+  // Get session details for selected
+  const allSessions = [...SESSIONS.overnight, ...SESSIONS.day];
+  const selectedDetails = [...selectedSessions].map(id => {
+    const s = allSessions.find(x => x.id === id);
+    return s ? { id: s.id, name: s.name, dates: s.dates } : { id };
+  });
+
+  const payload = {
+    event: 'dates_selected',
+    ...leadData,
+    selected_sessions: selectedDetails,
+    session_count: selectedSessions.size,
+    timestamp: new Date().toISOString()
+  };
+
+  console.log('→ HighLevel webhook payload:', JSON.stringify(payload, null, 2));
+
+  // Track events
+  if (typeof fbq === 'function' && CONFIG.META_PIXEL_ID) {
+    fbq('track', 'CompleteRegistration', {
+      content_name: 'Forest Cliff Summer 2026 Registration',
+      content_category: leadData.program,
+      value: 30,
+      currency: 'CAD',
+      num_items: selectedSessions.size
+    });
+  }
+
+  window.dataLayer.push({
+    event: 'registration_complete',
+    sessions_selected: selectedSessions.size,
+    session_ids: [...selectedSessions],
+    program: leadData.program
+  });
+
+  // Fire HighLevel webhook
+  if (CONFIG.HIGHLEVEL_WEBHOOK_URL) {
+    try {
+      await fetch(CONFIG.HIGHLEVEL_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+    } catch (err) {
+      console.warn('Webhook error:', err);
+    }
+  }
+
+  // Show success
+  setTimeout(() => showSuccess(selectedDetails), 800);
+}
+
+/* ═══ SUCCESS OVERLAY ═══ */
+function showSuccess(sessions) {
+  const child = leadData.childName || 'Your child';
+  const email = leadData.email || 'your email';
+  const confetti = ["🌲","⭐","🏕️","🎉","🌞","✨","🔥","🛶"].map((e, i) =>
+    `<span style="position:absolute;left:${8+i*11}%;top:0;font-size:${18+(i%3)*6}px;animation:confettiDrop ${(.8+i*.12).toFixed(2)}s ease-out ${(i*.08).toFixed(2)}s both">${e}</span>`
+  ).join('');
+
+  const sessionList = sessions.map((s, i) =>
+    `<div style="display:flex;align-items:center;gap:10px;padding:8px 0;${i < sessions.length - 1 ? 'border-bottom:1px solid var(--sand)' : ''}">
+      <div style="width:22px;height:22px;border-radius:50%;background:var(--ember);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">${i + 1}</div>
+      <div><div style="font-size:14px;font-weight:600;color:var(--dark)">${s.name}</div><div style="font-size:13px;color:var(--light)">${s.dates}</div></div>
+    </div>`
+  ).join('');
+
+  const overlay = document.createElement('div');
+  overlay.className = 'success-overlay';
+  overlay.innerHTML = `
+    <div class="success-content">
+      <div style="position:relative;height:55px;margin-bottom:8px">${confetti}</div>
+      <div class="success-check"></div>
+      <h2>${child} is all set for summer!</h2>
+      <p class="sub">We've got your preferred weeks. Here's what happens next.</p>
+
+      <div style="background:#fff;border-radius:14px;border:1px solid var(--sand);padding:20px;text-align:left;margin-bottom:20px">
+        <div style="font-size:11px;font-weight:700;color:var(--pine);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">Your selections</div>
+        ${sessionList}
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-label">What happens now</div>
+        <div class="tl-item">
+          <div class="tl-time now">Now</div>
+          <div class="tl-dot-col"><div class="tl-dot active"></div><div class="tl-line"></div></div>
+          <div class="tl-text highlight">Confirmation email sent to ${email}</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time soon">24–48 hrs</div>
+          <div class="tl-dot-col"><div class="tl-dot active"></div><div class="tl-line"></div></div>
+          <div class="tl-text highlight">Session confirmation + registration forms</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time later">This week</div>
+          <div class="tl-dot-col"><div class="tl-dot upcoming"></div><div class="tl-line"></div></div>
+          <div class="tl-text normal">Quick medical + emergency contact form</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time later">Before camp</div>
+          <div class="tl-dot-col"><div class="tl-dot upcoming"></div></div>
+          <div class="tl-text normal">Packing list + cabin assignment details</div>
+        </div>
+      </div>
+
+      <div class="share-card">
+        <h3>Know a family who'd love this?</h3>
+        <p>Camp's better when kids already know someone there.</p>
+        <button class="share-btn" onclick="shareLink()">📤 Share with a friend</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+  document.getElementById('selectionBar').style.display = 'none';
+}
+
+/* ═══ SHARE ═══ */
+function shareLink() {
+  const text = `My kid is going to Forest Cliff Camps this summer! 🌲🏕️ Check it out — $30 refundable deposit locks in a spot.`;
+  const url = window.location.origin;
+  if (navigator.share) {
+    navigator.share({ title: 'Forest Cliff Camps', text, url }).catch(() => {});
+  } else {
+    navigator.clipboard.writeText(text + ' ' + url).then(() => {
+      const btn = event.target;
+      btn.textContent = '✓ Link copied!';
+      setTimeout(() => { btn.innerHTML = '📤 Share with a friend'; }, 2000);
+    });
+  }
+}
+
+/* ═══ ADD ANOTHER CAMPER ═══ */
+function addCamper() {
+  const baseUrl = new URL('/', window.location.origin);
+  // Pass UTM data to landing page
+  Object.entries(leadData).forEach(([k, v]) => {
+    if (v && k.startsWith('utm_')) baseUrl.searchParams.set(k, v);
+  });
+  if (leadData.fbclid) baseUrl.searchParams.set('fbclid', leadData.fbclid);
+  window.open(baseUrl.toString(), '_blank');
+}
+
+/* ═══ INIT ═══ */
+renderTabs();
+renderSessions();
+console.log('📋 Lead data:', JSON.stringify(leadData, null, 2));
+</script>
+</body>
+</html>
