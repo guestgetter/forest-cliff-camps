@@ -53,8 +53,8 @@ body{background:var(--cream);font-family:'Outfit',sans-serif;color:var(--dark);-
 @media(max-width:600px){.progress-step span{display:none}.progress{justify-content:center}}
 
 /* ═══ LAYOUT ═══ */
-.page{max-width:800px;margin:0 auto;padding:40px 24px 60px}
-@media(max-width:600px){.page{padding:24px 16px 40px}}
+.page{max-width:800px;margin:0 auto;padding:40px 24px 100px}
+@media(max-width:600px){.page{padding:24px 16px 100px}}
 
 .page-title{font-family:'Fraunces',serif;font-size:clamp(24px,4vw,32px);font-weight:700;color:var(--forest);margin-bottom:6px}
 .page-sub{font-size:16px;color:var(--light);margin-bottom:8px;line-height:1.6}
@@ -66,36 +66,68 @@ body{background:var(--cream);font-family:'Outfit',sans-serif;color:var(--dark);-
 .program-tab:hover{border-color:var(--pine)}
 .program-tab.active{background:var(--forest);color:#fff;border-color:var(--forest)}
 
-/* ═══ SESSION CARDS ═══ */
-.sessions{display:grid;gap:12px;margin-bottom:32px}
-.session-card{background:#fff;border:2px solid var(--sand);border-radius:14px;padding:20px;cursor:pointer;transition:all .2s;display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;user-select:none}
-.session-card:hover{border-color:var(--pine);transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,0.06)}
-.session-card.selected{border-color:var(--ember);background:rgba(204,88,31,0.02);box-shadow:0 4px 16px rgba(204,88,31,0.12)}
-.session-card.unavailable{opacity:0.5;cursor:default;pointer-events:none}
-.session-card.unavailable:hover{transform:none;box-shadow:none}
+/* ═══ FILTER BAR ═══ */
+.filter-bar{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.filter-bar label{display:flex;align-items:center;gap:6px;cursor:pointer;font-size:13px;color:var(--med)}
+.toggle{width:34px;height:18px;border-radius:10px;background:var(--sand);position:relative;cursor:pointer;transition:background .2s;flex-shrink:0}
+.toggle.on{background:var(--pine)}
+.toggle::after{content:'';width:14px;height:14px;border-radius:50%;background:#fff;position:absolute;top:2px;left:2px;transition:left .2s}
+.toggle.on::after{left:18px}
+.filter-select{padding:6px 12px;border-radius:8px;border:1px solid var(--sand);background:#fff;font-size:13px;font-family:inherit;color:var(--dark)}
 
-.sc-check{width:24px;height:24px;border-radius:50%;border:2px solid var(--sand);display:flex;align-items:center;justify-content:center;font-size:12px;color:transparent;transition:all .2s;flex-shrink:0}
+/* ═══ SECTION HEADERS ═══ */
+.section-head{font-size:13px;font-weight:700;color:var(--pine);text-transform:uppercase;letter-spacing:0.06em;margin:28px 0 12px;display:flex;align-items:center;gap:8px}
+.section-head:first-of-type{margin-top:0}
+.section-sub{font-size:12px;font-weight:400;color:var(--stone);text-transform:none;letter-spacing:0}
+
+/* ═══ SESSION CARDS ═══ */
+.sessions{display:grid;gap:10px;margin-bottom:12px}
+.session-card{background:#fff;border:2px solid var(--sand);border-radius:12px;padding:16px 18px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:14px;flex-wrap:wrap;user-select:none}
+.session-card:hover{border-color:var(--pine);transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,0.05)}
+.session-card.selected{border-color:var(--ember);background:rgba(204,88,31,0.02);box-shadow:0 4px 16px rgba(204,88,31,0.1)}
+.session-card.full{opacity:0.5;cursor:default}
+.session-card.full:hover{transform:none;box-shadow:none;border-color:var(--sand)}
+
+.sc-check{width:22px;height:22px;border-radius:50%;border:2px solid var(--sand);display:flex;align-items:center;justify-content:center;font-size:11px;color:transparent;transition:all .15s;flex-shrink:0}
 .session-card.selected .sc-check{border-color:var(--ember);background:var(--ember);color:#fff}
 
-.sc-info h4{font-size:16px;font-weight:700;color:var(--dark);margin-bottom:2px}
-.sc-info .sc-dates{font-size:14px;color:var(--med);font-weight:500}
-.sc-info .sc-detail{font-size:13px;color:var(--light);margin-top:4px;display:flex;flex-wrap:wrap;gap:8px}
-.sc-info .sc-detail span{display:inline-flex;align-items:center;gap:4px}
+.sc-info{flex:1;min-width:0}
+.sc-info h4{font-size:15px;font-weight:700;color:var(--dark);margin-bottom:1px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.sc-info .sc-location{font-size:13px;color:var(--med);font-weight:500}
+.sc-info .sc-detail{font-size:12px;color:var(--light);margin-top:4px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 
-.sc-meta{text-align:right;flex-shrink:0}
-.sc-meta .sc-avail{font-size:12px;font-weight:600;padding:4px 10px;border-radius:12px;white-space:nowrap}
-.sc-meta .sc-avail.open{background:rgba(138,187,146,0.15);color:var(--pine)}
-.sc-meta .sc-avail.limited{background:rgba(204,88,31,0.1);color:var(--ember)}
-.sc-meta .sc-avail.full{background:rgba(180,180,180,0.15);color:var(--stone)}
-.sc-meta .sc-grade{font-size:12px;color:var(--stone);margin-top:4px}
+.program-badge{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;white-space:nowrap}
+.program-badge.overnight{background:#eef2ff;color:#4338ca}
+.program-badge.daycamp{background:#fef3c7;color:#92400e}
+.program-badge.act{background:#fce7f3;color:#9d174d}
+.program-badge.lake{background:#ccfbf1;color:#0f766e}
+
+/* ═══ CAPACITY BAR ═══ */
+.cap-row{display:flex;align-items:center;gap:10px;flex-shrink:0;min-width:160px}
+.cap-bar-wrap{flex:1;min-width:60px;height:5px;background:var(--sand);border-radius:99px;overflow:hidden}
+.cap-bar{height:100%;border-radius:99px;transition:width .3s}
+.cap-bar.open{background:var(--meadow)}
+.cap-bar.almost{background:#fbbf24}
+.cap-bar.full{background:#f87171}
+
+/* ═══ AVAIL BADGE ═══ */
+.avail-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:99px;font-size:12px;font-weight:700;white-space:nowrap;flex-shrink:0}
+.avail-badge.open{background:rgba(138,187,146,0.15);color:#065f46}
+.avail-badge.almost{background:#fef9c3;color:#92400e}
+.avail-badge.full-badge{background:rgba(180,180,180,0.15);color:var(--stone)}
+.avail-dot{width:7px;height:7px;border-radius:50%;display:inline-block}
+.avail-dot.open{background:#10b981}
+.avail-dot.almost{background:#f59e0b}
+.avail-dot.full-dot{background:#ef4444}
 
 @media(max-width:600px){
-  .session-card{grid-template-columns:auto 1fr;gap:12px}
-  .sc-meta{grid-column:2;text-align:left}
+  .cap-row{min-width:100%;margin-top:4px}
+  .session-card{flex-wrap:wrap}
 }
 
-/* ═══ SELECTION COUNTER ═══ */
-.selection-bar{position:sticky;bottom:0;background:rgba(250,248,244,0.97);backdrop-filter:blur(12px);border-top:1px solid var(--sand);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;z-index:10}
+/* ═══ SELECTION BAR ═══ */
+.selection-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(250,248,244,0.97);backdrop-filter:blur(12px);border-top:1px solid var(--sand);padding:16px 24px;display:flex;align-items:center;justify-content:center;gap:16px;z-index:10}
+.sel-inner{max-width:800px;width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .sel-count{font-size:15px;color:var(--med);font-weight:500}
 .sel-count strong{color:var(--forest);font-weight:700}
 .sel-count .max-hint{font-size:13px;color:var(--stone);display:block}
@@ -105,18 +137,18 @@ body{background:var(--cream);font-family:'Outfit',sans-serif;color:var(--dark);-
 .sel-btn.disabled{background:#c4bfb0;cursor:default;animation:none}
 .sel-btn .spinner{width:20px;height:20px;border:3px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite}
 
-/* ═══ ADD CAMPER ═══ */
-.add-camper{margin-bottom:32px}
-.add-camper-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:10px;border:2px dashed var(--sand);background:transparent;color:var(--pine);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s}
-.add-camper-btn:hover{border-color:var(--pine);background:rgba(45,90,63,0.03)}
-
 /* ═══ HELPER TEXT ═══ */
 .helper{background:rgba(45,90,63,0.04);border:1px solid rgba(45,90,63,0.08);border-radius:10px;padding:14px 16px;margin-bottom:24px;display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--med);line-height:1.5}
 .helper .h-icon{font-size:18px;flex-shrink:0}
 .helper strong{color:var(--forest);font-weight:600}
 
+/* ═══ ADD CAMPER ═══ */
+.add-camper{margin-bottom:32px}
+.add-camper-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:10px;border:2px dashed var(--sand);background:transparent;color:var(--pine);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s}
+.add-camper-btn:hover{border-color:var(--pine);background:rgba(45,90,63,0.03)}
+
 /* ═══ SUCCESS STATE ═══ */
-.success-overlay{position:fixed;inset:0;background:rgba(250,248,244,0.97);z-index:100;display:flex;align-items:center;justify-content:center;animation:fadeIn .3s ease-out}
+.success-overlay{position:fixed;inset:0;background:rgba(250,248,244,0.97);z-index:100;display:flex;align-items:center;justify-content:center;animation:fadeIn .3s ease-out;overflow-y:auto}
 .success-content{max-width:520px;text-align:center;padding:40px 24px}
 .success-check{width:72px;height:72px;border-radius:50%;background:var(--meadow);margin:0 auto 24px;display:flex;align-items:center;justify-content:center}
 .success-check::after{content:'';display:block;width:24px;height:12px;border-left:3px solid #fff;border-bottom:3px solid #fff;animation:checkmark .4s ease-out .2s both}
@@ -165,23 +197,36 @@ body{background:var(--cream);font-family:'Outfit',sans-serif;color:var(--dark);-
     <div class="progress-step active"><div class="progress-dot">3</div><span>Pick Dates</span></div>
   </div>
 
-  <h1 class="page-title">Pick <span id="childNameTitle"></span>'s camp weeks</h1>
-  <p class="page-sub">Select up to <strong>5 preferred weeks</strong> — we'll confirm your top choice based on availability.</p>
+  <h1 class="page-title">Pick <span id="childNameTitle"></span>'s camp sessions</h1>
+  <p class="page-sub">Select up to <strong>5 preferred sessions</strong> — we'll confirm your top choices based on availability.</p>
   <div class="child-pill" id="childPill">🏕️ <span id="childInfo"></span></div>
 
   <div class="helper">
     <span class="h-icon">💡</span>
-    <div><strong>Tip:</strong> Picking more weeks gives you better chances. We'll do our best to get your #1 choice — and we'll reach out if we need to adjust.</div>
+    <div><strong>Tip:</strong> Picking more sessions gives you better chances. We'll do our best to get your #1 choice — and we'll reach out if we need to adjust.</div>
   </div>
 
   <!-- PROGRAM TABS -->
   <div class="program-tabs" id="programTabs"></div>
 
+  <!-- FILTER BAR -->
+  <div class="filter-bar" id="filterBar">
+    <label>
+      <div class="toggle" id="hideFullToggle" onclick="toggleHideFull()"></div>
+      Hide full sessions
+    </label>
+    <select class="filter-select" id="weekFilter" onchange="renderSessions()" style="display:none">
+      <option value="all">All weeks</option>
+      <option value="1">Week 1</option><option value="2">Week 2</option><option value="3">Week 3</option><option value="4">Week 4</option>
+      <option value="5">Week 5</option><option value="6">Week 6</option><option value="7">Week 7</option><option value="8">Week 8</option>
+    </select>
+  </div>
+
   <!-- SESSION CARDS -->
-  <div class="sessions" id="sessionList"></div>
+  <div id="sessionList"></div>
 
   <!-- ADD ANOTHER CAMPER -->
-  <div class="add-camper">
+  <div class="add-camper" style="margin-top:24px">
     <button class="add-camper-btn" onclick="addCamper()">
       + Register another child
     </button>
@@ -190,13 +235,15 @@ body{background:var(--cream);font-family:'Outfit',sans-serif;color:var(--dark);-
 
 <!-- ═══ STICKY BOTTOM BAR ═══ -->
 <div class="selection-bar" id="selectionBar" style="display:none">
-  <div class="sel-count">
-    <strong><span id="selCount">0</span> week(s) selected</strong>
-    <span class="max-hint">up to 5 — more = better chance of your #1</span>
+  <div class="sel-inner">
+    <div class="sel-count">
+      <strong><span id="selCount">0</span> session(s) selected</strong>
+      <span class="max-hint">up to 5 — more = better chance of your #1</span>
+    </div>
+    <button class="sel-btn disabled" id="selBtn" onclick="submitSelections()">
+      Confirm Selections →
+    </button>
   </div>
-  <button class="sel-btn disabled" id="selBtn" onclick="submitSelections()">
-    Confirm Selections →
-  </button>
 </div>
 
 <!-- ═══════════════════════════════════════
@@ -208,37 +255,140 @@ const CONFIG = {
   META_PIXEL_ID: '',            // Facebook Pixel ID
 };
 
-/* ═══ CAMP SESSION DATA ═══
-   Update these each season. Availability values: "open", "limited", "full"
-   ═══════════════════════════ */
-const SESSIONS = {
+/* ═══════════════════════════════════════
+   REAL CAMP SESSION DATA — Summer 2026
+   Source: Forest Cliff registration system
+   ═══════════════════════════════════════ */
+const campData = {
   overnight: [
-    { id: 'oc1', name: 'Kids Camp — Week 1', dates: 'June 28 – July 3', grades: 'Gr. 1–7', nights: '5 nights', avail: 'open', spots: 'Spots available' },
-    { id: 'oc2', name: 'Kids Camp — Week 2', dates: 'July 5 – July 10', grades: 'Gr. 1–7', nights: '5 nights', avail: 'open', spots: 'Spots available' },
-    { id: 'oc3', name: 'Kids Camp — Week 3', dates: 'July 12 – July 17', grades: 'Gr. 1–7', nights: '5 nights', avail: 'limited', spots: 'Filling fast' },
-    { id: 'oc4', name: 'Kids Camp — Week 4', dates: 'July 19 – July 24', grades: 'Gr. 1–7', nights: '5 nights', avail: 'open', spots: 'Spots available' },
-    { id: 'oc5', name: 'Kids Camp — Week 5', dates: 'July 26 – July 31', grades: 'Gr. 1–7', nights: '5 nights', avail: 'limited', spots: 'Filling fast' },
-    { id: 'oc6', name: 'Kids Camp — Week 6', dates: 'Aug 2 – Aug 7', grades: 'Gr. 1–7', nights: '5 nights', avail: 'open', spots: 'Spots available' },
-    { id: 'oc7', name: 'Kids Camp — Week 7', dates: 'Aug 9 – Aug 14', grades: 'Gr. 1–7', nights: '5 nights', avail: 'open', spots: 'Spots available' },
-    { id: 'jc1', name: 'Junior Camp — Session 1', dates: 'July 8 – July 10', grades: 'Gr. 1–3', nights: '2 nights', avail: 'limited', spots: 'Almost full' },
-    { id: 'jc2', name: 'Junior Camp — Session 2', dates: 'July 22 – July 24', grades: 'Gr. 1–3', nights: '2 nights', avail: 'open', spots: 'Spots available' },
-    { id: 'jc3', name: 'Junior Camp — Session 3', dates: 'Aug 5 – Aug 7', grades: 'Gr. 1–3', nights: '2 nights', avail: 'open', spots: 'Spots available' },
-    { id: 'jh1', name: 'Jr High Camp — Week 1', dates: 'Aug 2 – Aug 7', grades: 'Gr. 6–8', nights: '5 nights', avail: 'open', spots: 'Spots available' },
-    { id: 'jh2', name: 'Jr High Camp — Week 2', dates: 'Aug 23 – Aug 26', grades: 'Gr. 7–8', nights: '3 nights', avail: 'open', spots: 'Spots available' },
-    { id: 'gw1', name: 'Girls Week', dates: 'July 19 – July 24', grades: 'Gr. 5–8', nights: '5 nights', avail: 'limited', spots: 'Filling fast' },
-    { id: 'salt1', name: 'SALT Leadership', dates: 'Aug 16 – Aug 21', grades: 'Gr. 7–8', nights: '5 nights', avail: 'open', spots: 'Spots available' },
+    {
+      id: 'kids-camp', name: 'Kids Camp', description: '5 nights · Grades 1–7',
+      sessions: [
+        { id: 'kc-s2', name: 'Kids Camp — Session 2', registered: 119, capacity: 164, available: 45, breakdown: 'Boys: 56/72 · Girls: 63/92' },
+        { id: 'kc-s3', name: 'Kids Camp — Session 3', registered: 129, capacity: 164, available: 35, breakdown: 'Boys: 41/72 · Girls: 88/92' },
+        { id: 'kc-s4', name: 'Kids Camp — Session 4', registered: 131, capacity: 164, available: 33, breakdown: 'Boys: 70/72 · Girls: 61/92' },
+        { id: 'kc-s5', name: 'Kids Camp — Session 5', registered: 113, capacity: 164, available: 51, breakdown: 'Boys: 49/72 · Girls: 64/92' },
+        { id: 'kc-s6', name: 'Kids Camp — Session 6', registered: 117, capacity: 164, available: 47, breakdown: 'Boys: 56/72 · Girls: 61/92' },
+      ]
+    },
+    {
+      id: 'junior-camp', name: 'Junior Camp', description: '2 nights · Grades 1–3',
+      sessions: [
+        { id: 'jc-s1', name: 'Junior Camp — Session 1', registered: 8,  capacity: 20, available: 12, breakdown: 'Boys: 4/10 · Girls: 4/10' },
+        { id: 'jc-s2', name: 'Junior Camp — Session 2', registered: 6,  capacity: 20, available: 14, breakdown: 'Boys: 0/10 · Girls: 6/10' },
+        { id: 'jc-s3', name: 'Junior Camp — Session 3', registered: 12, capacity: 20, available: 8,  breakdown: 'Boys: 4/10 · Girls: 8/10' },
+        { id: 'jc-s4', name: 'Junior Camp — Session 4', registered: 9,  capacity: 20, available: 11, breakdown: 'Boys: 2/10 · Girls: 7/10' },
+      ]
+    },
+    {
+      id: 'jr-high', name: 'Jr. High Camp', description: 'Grades 6–8',
+      sessions: [
+        { id: 'jh-gw', name: 'Jr. High — Girls Week',  registered: 137, capacity: 137, available: 0,  breakdown: 'Girls only' },
+        { id: 'jh-s8', name: 'Jr. High — Session 8',   registered: 88,  capacity: 164, available: 76, breakdown: 'Boys: 42/72 · Girls: 46/92' },
+      ]
+    },
+    {
+      id: 'salt', name: 'SALT', description: 'Teen leadership · Grades 7–8',
+      sessions: [
+        { id: 'salt-2', name: 'SALT — Session 2',              registered: 26, capacity: 32, available: 6,  breakdown: 'Boys: 10/16 · Girls: 16/16' },
+        { id: 'salt-3', name: 'SALT — Session 3',              registered: 31, capacity: 32, available: 1,  breakdown: 'Boys: 15/16 · Girls: 16/16' },
+        { id: 'salt-4', name: 'SALT — Session 4',              registered: 32, capacity: 32, available: 0,  breakdown: 'Boys: 16/16 · Girls: 16/16' },
+        { id: 'salt-5', name: 'SALT — Session 5',              registered: 30, capacity: 32, available: 2,  breakdown: 'Boys: 14/16 · Girls: 16/16' },
+        { id: 'salt-6', name: 'SALT — Session 6',              registered: 19, capacity: 32, available: 13, breakdown: 'Boys: 4/16 · Girls: 15/16' },
+        { id: 'salt-7', name: 'SALT — Session 7 (Girls Week)', registered: 32, capacity: 32, available: 0,  breakdown: 'Girls only' },
+        { id: 'salt-8', name: 'SALT — Session 8',              registered: 22, capacity: 32, available: 10, breakdown: 'Boys: 6/16 · Girls: 16/16' },
+      ]
+    },
   ],
-  day: [
-    { id: 'dc1', name: 'Day Camp — Week 1', dates: 'June 29 – July 3', grades: 'SK–Gr. 5', nights: '4 days', avail: 'open', spots: 'Spots available', location: 'London' },
-    { id: 'dc2', name: 'Day Camp — Week 2', dates: 'July 6 – July 10', grades: 'SK–Gr. 5', nights: '5 days', avail: 'open', spots: 'Spots available', location: 'London' },
-    { id: 'dc3', name: 'Day Camp — Week 3', dates: 'July 13 – July 17', grades: 'SK–Gr. 5', nights: '5 days', avail: 'limited', spots: 'Filling fast', location: 'London' },
-    { id: 'dc4', name: 'Day Camp — Week 4', dates: 'July 20 – July 24', grades: 'SK–Gr. 5', nights: '5 days', avail: 'open', spots: 'Spots available', location: 'London' },
-    { id: 'dc5', name: 'Day Camp — Week 5', dates: 'July 27 – July 31', grades: 'SK–Gr. 5', nights: '5 days', avail: 'open', spots: 'Spots available', location: 'London' },
-    { id: 'dc6', name: 'Day Camp — Week 6', dates: 'Aug 4 – Aug 8', grades: 'SK–Gr. 5', nights: '5 days', avail: 'open', spots: 'Spots available', location: 'London' },
-    { id: 'dcl1', name: 'Day Camp at the Lake — Week 1', dates: 'July 6 – July 10', grades: 'SK–Gr. 5', nights: '5 days', avail: 'open', spots: 'Spots available', location: 'Lambton Shores' },
-    { id: 'dcl2', name: 'Day Camp at the Lake — Week 2', dates: 'July 13 – July 17', grades: 'SK–Gr. 5', nights: '5 days', avail: 'limited', spots: 'Filling fast', location: 'Lambton Shores' },
+  daycamp: [
+    { week: 1, locations: [
+      { id: 'dc-1-npcc',  name: 'North Park Community Church, London',  registered: 22,  capacity: 151, available: 129, program: 'Day Camp' },
+      { id: 'dc-1-fcl',   name: 'Forest Cliff Camp, Lambton Shores',    registered: 33,  capacity: 80,  available: 47,  program: 'Day Camp at the Lake' },
+      { id: 'act-1-npcc', name: 'North Park Community Church, London',  registered: 18,  capacity: 25,  available: 7,   program: 'ACT' },
+    ]},
+    { week: 2, locations: [
+      { id: 'dc-2-scbc',  name: 'Stoney Creek Baptist Church, London',    registered: 58,  capacity: 126, available: 68, program: 'Day Camp' },
+      { id: 'dc-2-vgcc',  name: 'Village Green Community Church, London', registered: 61,  capacity: 126, available: 65, program: 'Day Camp' },
+      { id: 'dc-2-bbc',   name: 'Bethel Baptist Church, Strathroy',       registered: 38,  capacity: 126, available: 88, program: 'Day Camp' },
+      { id: 'act-2-scbc', name: 'Stoney Creek Baptist, London',           registered: 13,  capacity: 13,  available: 0,  program: 'ACT' },
+      { id: 'act-2-vgcc', name: 'Village Green Community Church, London', registered: 13,  capacity: 13,  available: 0,  program: 'ACT' },
+      { id: 'act-2-bbc',  name: 'Bethel Baptist Church, Strathroy',       registered: 11,  capacity: 13,  available: 2,  program: 'ACT' },
+    ]},
+    { week: 3, locations: [
+      { id: 'dc-3-wp',  name: 'WestPark Church, London',  registered: 156, capacity: 376, available: 220, program: 'Day Camp' },
+      { id: 'act-3-wp', name: 'WestPark Church, London',  registered: 37,  capacity: 37,  available: 0,   program: 'ACT' },
+    ]},
+    { week: 4, locations: [
+      { id: 'dc-4-wp',   name: 'WestPark Church, London', registered: 118, capacity: 251, available: 133, program: 'Day Camp' },
+      { id: 'dc-4-fst',  name: 'Faith St. Thomas',        registered: 126, capacity: 126, available: 0,   program: 'Day Camp' },
+      { id: 'act-4-wp',  name: 'WestPark Church, London', registered: 25,  capacity: 25,  available: 0,   program: 'ACT' },
+      { id: 'act-4-fst', name: 'Faith St. Thomas',        registered: 13,  capacity: 13,  available: 0,   program: 'ACT' },
+    ]},
+    { week: 5, locations: [
+      { id: 'dc-5-cbi',  name: 'Community Bible Church, Ilderton',    registered: 126, capacity: 126, available: 0,  program: 'Day Camp' },
+      { id: 'dc-5-scc',  name: 'Summerside Community Church, London', registered: 43,  capacity: 126, available: 83, program: 'Day Camp' },
+      { id: 'dc-5-fst',  name: 'Faith St. Thomas',                    registered: 119, capacity: 126, available: 7,  program: 'Day Camp' },
+      { id: 'act-5-cbi', name: 'Community Bible Church, Ilderton',    registered: 11,  capacity: 13,  available: 2,  program: 'ACT' },
+      { id: 'act-5-scc', name: 'Summerside Community Church, London', registered: 11,  capacity: 13,  available: 2,  program: 'ACT' },
+      { id: 'act-5-fst', name: 'Faith St. Thomas',                    registered: 13,  capacity: 13,  available: 0,  program: 'ACT' },
+    ]},
+    { week: 6, locations: [
+      { id: 'dc-6-npcc',  name: 'North Park Community Church, London', registered: 43,  capacity: 126, available: 83,  program: 'Day Camp' },
+      { id: 'dc-6-sal',   name: 'Salvation Army, London',              registered: 23,  capacity: 126, available: 103, program: 'Day Camp' },
+      { id: 'dc-6-fst',   name: 'Faith St. Thomas',                    registered: 89,  capacity: 126, available: 37,  program: 'Day Camp' },
+      { id: 'act-6-npcc', name: 'North Park Community Church, London', registered: 13,  capacity: 13,  available: 0,   program: 'ACT' },
+      { id: 'act-6-sal',  name: 'Salvation Army, London',              registered: 8,   capacity: 13,  available: 5,   program: 'ACT' },
+      { id: 'act-6-fst',  name: 'Faith St. Thomas',                    registered: 13,  capacity: 13,  available: 0,   program: 'ACT' },
+    ]},
+    { week: 7, locations: [
+      { id: 'dc-7-gw',  name: 'Gateway Caledonia',  registered: 26,  capacity: 126, available: 100, program: 'Day Camp' },
+      { id: 'dc-7-cb',  name: 'Calvary Burlington',  registered: 52,  capacity: 126, available: 74,  program: 'Day Camp' },
+      { id: 'dc-7-fst', name: 'Faith St. Thomas',   registered: 127, capacity: 126, available: 0,   program: 'Day Camp' },
+      { id: 'act-7-gw', name: 'Gateway Caledonia',  registered: 11,  capacity: 13,  available: 2,   program: 'ACT' },
+      { id: 'act-7-cb', name: 'Calvary Burlington',  registered: 13,  capacity: 13,  available: 0,   program: 'ACT' },
+      { id: 'act-7-fst',name: 'Faith St. Thomas',   registered: 13,  capacity: 13,  available: 0,   program: 'ACT' },
+    ]},
+    { week: 8, locations: [
+      { id: 'dc-8-scbc',  name: 'Stoney Creek Baptist Church, London', registered: 89,  capacity: 126, available: 37, program: 'Day Camp' },
+      { id: 'dc-8-vpc',   name: 'Vitalpoint Church, Poplar Hill',      registered: 31,  capacity: 126, available: 95, program: 'Day Camp' },
+      { id: 'dc-8-bcs',   name: 'Bluewater Church, Sarnia',            registered: 53,  capacity: 126, available: 73, program: 'Day Camp' },
+      { id: 'act-8-scbc', name: 'Stoney Creek Baptist Church, London', registered: 13,  capacity: 13,  available: 0,  program: 'ACT' },
+      { id: 'act-8-vpc',  name: 'Vitalpoint Church, Poplar Hill',      registered: 11,  capacity: 13,  available: 2,  program: 'ACT' },
+      { id: 'act-8-bcs',  name: 'Bluewater Church, Sarnia',            registered: 8,   capacity: 13,  available: 5,  program: 'ACT' },
+    ]},
   ]
 };
+
+/* ═══ HELPERS ═══ */
+function getStatus(available, capacity) {
+  if (available <= 0) return 'full';
+  if (available / capacity <= 0.15) return 'almost';
+  return 'open';
+}
+
+function getProgramBadgeClass(program) {
+  if (program === 'ACT') return 'act';
+  if (program === 'Day Camp at the Lake') return 'lake';
+  if (program === 'Day Camp') return 'daycamp';
+  return 'overnight';
+}
+
+function buildAvailBadge(available, capacity) {
+  const s = getStatus(available, capacity);
+  const dotClass = s === 'full' ? 'full-dot' : s;
+  const badgeClass = s === 'full' ? 'full-badge' : s;
+  const label = s === 'full' ? 'Full' : `${available} spot${available !== 1 ? 's' : ''} left`;
+  return `<span class="avail-badge ${badgeClass}"><span class="avail-dot ${dotClass}"></span>${label}</span>`;
+}
+
+function buildCapBar(registered, capacity) {
+  const pct = Math.min(Math.round((registered / capacity) * 100), 100);
+  const s = getStatus(capacity - registered, capacity);
+  return `<div class="cap-row">
+    <span style="font-size:12px;color:var(--light);white-space:nowrap">${registered}/${capacity}</span>
+    <div class="cap-bar-wrap"><div class="cap-bar ${s}" style="width:${pct}%"></div></div>
+  </div>`;
+}
 
 /* ═══ READ URL PARAMS ═══ */
 const params = new URLSearchParams(window.location.search);
@@ -278,16 +428,16 @@ window.dataLayer.push({ event: 'date_picker_view', ...leadData });
 /* ═══ STATE ═══ */
 let selectedSessions = new Set();
 let activeTab = leadData.program === 'day' ? 'day' : (leadData.program === 'overnight' ? 'overnight' : 'all');
+let hideFull = false;
 
 /* ═══ RENDER TABS ═══ */
 function renderTabs() {
   const tabs = document.getElementById('programTabs');
   const tabDefs = [
     { key: 'all', label: 'All Sessions' },
-    { key: 'overnight', label: 'Overnight Camp' },
-    { key: 'day', label: 'Day Camp' }
+    { key: 'overnight', label: 'Overnight & SALT' },
+    { key: 'day', label: 'Day Camp & ACT' }
   ];
-  // If they selected a specific program, still show all tabs but default to that one
   tabs.innerHTML = tabDefs.map(t =>
     `<button class="program-tab${activeTab === t.key ? ' active' : ''}" onclick="switchTab('${t.key}')">${t.label}</button>`
   ).join('');
@@ -295,46 +445,96 @@ function renderTabs() {
 
 function switchTab(tab) {
   activeTab = tab;
+  // Show/hide week filter for day camp view
+  document.getElementById('weekFilter').style.display = (tab === 'day' || tab === 'all') ? 'block' : 'none';
   renderTabs();
   renderSessions();
+}
+
+function toggleHideFull() {
+  hideFull = !hideFull;
+  document.getElementById('hideFullToggle').classList.toggle('on', hideFull);
+  renderSessions();
+}
+
+/* ═══ BUILD SESSION CARD HTML ═══ */
+function buildCard(item, programLabel) {
+  const isSelected = selectedSessions.has(item.id);
+  const isFull = item.available <= 0;
+  const s = getStatus(item.available, item.capacity);
+  const cardClass = `session-card${isSelected ? ' selected' : ''}${isFull ? ' full' : ''}`;
+
+  return `
+    <div class="${cardClass}" onclick="${isFull ? '' : `toggleSession('${item.id}')`}" data-id="${item.id}">
+      <div class="sc-check">${isSelected ? '✓' : ''}</div>
+      <div class="sc-info">
+        <h4>
+          ${item.name}
+          ${programLabel ? `<span class="program-badge ${getProgramBadgeClass(programLabel)}">${programLabel}</span>` : ''}
+        </h4>
+        ${item.location ? `<div class="sc-location">📍 ${item.location || item.name}</div>` : ''}
+        <div class="sc-detail">
+          ${item.breakdown ? `<span style="color:var(--stone)">${item.breakdown}</span>` : ''}
+        </div>
+        ${buildCapBar(item.registered, item.capacity)}
+      </div>
+      <div style="flex-shrink:0">
+        ${buildAvailBadge(item.available, item.capacity)}
+      </div>
+    </div>
+  `;
 }
 
 /* ═══ RENDER SESSIONS ═══ */
 function renderSessions() {
   const list = document.getElementById('sessionList');
-  let sessions = [];
+  const weekFilter = document.getElementById('weekFilter').value;
+  let html = '';
+
+  // OVERNIGHT
   if (activeTab === 'all' || activeTab === 'overnight') {
-    sessions = sessions.concat(SESSIONS.overnight.map(s => ({...s, type: 'overnight'})));
+    if (activeTab === 'all') {
+      html += `<div class="section-head">🌙 Overnight Camp & SALT</div>`;
+    }
+    campData.overnight.forEach(camp => {
+      let sessions = camp.sessions;
+      if (hideFull) sessions = sessions.filter(s => s.available > 0);
+      if (sessions.length === 0) return;
+
+      html += `<div class="section-head" style="font-size:12px;margin-top:20px">${camp.name} <span class="section-sub">— ${camp.description}</span></div>`;
+      html += '<div class="sessions">';
+      sessions.forEach(s => {
+        html += buildCard({ ...s, location: null }, null);
+      });
+      html += '</div>';
+    });
   }
+
+  // DAY CAMP
   if (activeTab === 'all' || activeTab === 'day') {
-    sessions = sessions.concat(SESSIONS.day.map(s => ({...s, type: 'day'})));
+    if (activeTab === 'all') {
+      html += `<div class="section-head" style="margin-top:36px">☀️ Day Camp & ACT</div>`;
+    }
+    campData.daycamp.forEach(week => {
+      if (weekFilter !== 'all' && week.week !== Number(weekFilter)) return;
+      let locs = week.locations;
+      if (hideFull) locs = locs.filter(l => l.available > 0);
+      if (locs.length === 0) return;
+
+      html += `<div class="section-head" style="font-size:12px;margin-top:20px">Week ${week.week}</div>`;
+      html += '<div class="sessions">';
+      locs.forEach(loc => {
+        html += buildCard({ ...loc, location: loc.name }, loc.program);
+      });
+      html += '</div>';
+    });
   }
 
-  list.innerHTML = sessions.map(s => {
-    const isSelected = selectedSessions.has(s.id);
-    const isFull = s.avail === 'full';
-    const cardClass = `session-card${isSelected ? ' selected' : ''}${isFull ? ' unavailable' : ''}`;
-    const availClass = s.avail === 'limited' ? 'limited' : (s.avail === 'full' ? 'full' : 'open');
+  if (!html.trim()) {
+    html = '<div style="text-align:center;padding:40px;color:var(--stone);font-style:italic">No sessions match your filters.</div>';
+  }
 
-    return `
-      <div class="${cardClass}" onclick="${isFull ? '' : `toggleSession('${s.id}')`}" data-id="${s.id}">
-        <div class="sc-check">${isSelected ? '✓' : ''}</div>
-        <div class="sc-info">
-          <h4>${s.name}</h4>
-          <div class="sc-dates">${s.dates}</div>
-          <div class="sc-detail">
-            <span>📅 ${s.nights}</span>
-            <span>👤 ${s.grades}</span>
-            ${s.location ? `<span>📍 ${s.location}</span>` : '<span>📍 Lambton Shores</span>'}
-          </div>
-        </div>
-        <div class="sc-meta">
-          <div class="sc-avail ${availClass}">${isFull ? 'Full' : s.spots}</div>
-        </div>
-      </div>
-    `;
-  }).join('');
-
+  list.innerHTML = html;
   updateSelectionBar();
 }
 
@@ -345,11 +545,6 @@ function toggleSession(id) {
   } else if (selectedSessions.size < 5) {
     selectedSessions.add(id);
   } else {
-    // Max reached — shake the counter
-    const bar = document.getElementById('selectionBar');
-    bar.style.animation = 'none';
-    bar.offsetHeight; // reflow
-    bar.style.animation = '';
     return;
   }
   renderSessions();
@@ -366,6 +561,19 @@ function updateSelectionBar() {
   btn.className = 'sel-btn ' + (count > 0 ? 'active' : 'disabled');
 }
 
+/* ═══ FIND SESSION BY ID (flat lookup) ═══ */
+function findSession(id) {
+  for (const camp of campData.overnight) {
+    const found = camp.sessions.find(s => s.id === id);
+    if (found) return { ...found, category: camp.name };
+  }
+  for (const week of campData.daycamp) {
+    const found = week.locations.find(l => l.id === id);
+    if (found) return { ...found, category: `Week ${week.week} · ${found.program}` };
+  }
+  return { id, name: id, category: '' };
+}
+
 /* ═══ SUBMIT ═══ */
 async function submitSelections() {
   if (selectedSessions.size === 0) return;
@@ -374,11 +582,9 @@ async function submitSelections() {
   btn.innerHTML = '<div class="spinner"></div>';
   btn.style.pointerEvents = 'none';
 
-  // Get session details for selected
-  const allSessions = [...SESSIONS.overnight, ...SESSIONS.day];
   const selectedDetails = [...selectedSessions].map(id => {
-    const s = allSessions.find(x => x.id === id);
-    return s ? { id: s.id, name: s.name, dates: s.dates } : { id };
+    const s = findSession(id);
+    return { id: s.id, name: s.name, category: s.category, location: s.name || '' };
   });
 
   const payload = {
@@ -422,7 +628,6 @@ async function submitSelections() {
     }
   }
 
-  // Show success
   setTimeout(() => showSuccess(selectedDetails), 800);
 }
 
@@ -430,14 +635,17 @@ async function submitSelections() {
 function showSuccess(sessions) {
   const child = leadData.childName || 'Your child';
   const email = leadData.email || 'your email';
-  const confetti = ["🌲","⭐","🏕️","🎉","🌞","✨","🔥","🛶"].map((e, i) =>
+  const confetti = ['🌲','⭐','🏕️','🎉','🌞','✨','🔥','🛶'].map((e, i) =>
     `<span style="position:absolute;left:${8+i*11}%;top:0;font-size:${18+(i%3)*6}px;animation:confettiDrop ${(.8+i*.12).toFixed(2)}s ease-out ${(i*.08).toFixed(2)}s both">${e}</span>`
   ).join('');
 
   const sessionList = sessions.map((s, i) =>
     `<div style="display:flex;align-items:center;gap:10px;padding:8px 0;${i < sessions.length - 1 ? 'border-bottom:1px solid var(--sand)' : ''}">
       <div style="width:22px;height:22px;border-radius:50%;background:var(--ember);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">${i + 1}</div>
-      <div><div style="font-size:14px;font-weight:600;color:var(--dark)">${s.name}</div><div style="font-size:13px;color:var(--light)">${s.dates}</div></div>
+      <div>
+        <div style="font-size:14px;font-weight:600;color:var(--dark)">${s.name}</div>
+        <div style="font-size:12px;color:var(--light)">${s.category}</div>
+      </div>
     </div>`
   ).join('');
 
@@ -448,7 +656,7 @@ function showSuccess(sessions) {
       <div style="position:relative;height:55px;margin-bottom:8px">${confetti}</div>
       <div class="success-check"></div>
       <h2>${child} is all set for summer!</h2>
-      <p class="sub">We've got your preferred weeks. Here's what happens next.</p>
+      <p class="sub">We've got your preferred sessions. Here's what happens next.</p>
 
       <div style="background:#fff;border-radius:14px;border:1px solid var(--sand);padding:20px;text-align:left;margin-bottom:20px">
         <div style="font-size:11px;font-weight:700;color:var(--pine);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">Your selections</div>
@@ -492,7 +700,7 @@ function showSuccess(sessions) {
 
 /* ═══ SHARE ═══ */
 function shareLink() {
-  const text = `My kid is going to Forest Cliff Camps this summer! 🌲🏕️ Check it out — $30 refundable deposit locks in a spot.`;
+  const text = 'My kid is going to Forest Cliff Camps this summer! 🌲🏕️ Check it out — $30 refundable deposit locks in a spot.';
   const url = window.location.origin;
   if (navigator.share) {
     navigator.share({ title: 'Forest Cliff Camps', text, url }).catch(() => {});
@@ -508,7 +716,6 @@ function shareLink() {
 /* ═══ ADD ANOTHER CAMPER ═══ */
 function addCamper() {
   const baseUrl = new URL('/', window.location.origin);
-  // Pass UTM data to landing page
   Object.entries(leadData).forEach(([k, v]) => {
     if (v && k.startsWith('utm_')) baseUrl.searchParams.set(k, v);
   });
@@ -518,6 +725,8 @@ function addCamper() {
 
 /* ═══ INIT ═══ */
 renderTabs();
+// Show week filter if day camp tab
+document.getElementById('weekFilter').style.display = (activeTab === 'day' || activeTab === 'all') ? 'block' : 'none';
 renderSessions();
 console.log('📋 Lead data:', JSON.stringify(leadData, null, 2));
 </script>
