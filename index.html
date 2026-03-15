@@ -353,10 +353,10 @@ body{background:var(--cream);font-family:'Outfit',sans-serif;color:var(--dark);-
      ═══════════════════════════════════════ -->
 <script>
 const CONFIG = {
-  WEBHOOK_URL: '',       // HighLevel webhook URL
-  PAYMENT_URL: '',       // HighLevel payment/funnel page URL for $30 Stripe deposit
+  WEBHOOK_URL: '',       // HighLevel webhook URL — fires on initial lead capture
   DEPOSIT: 30,
   META_PIXEL_ID: '',
+  DEPOSIT_PAGE: 'deposit.html',  // Local deposit page (Stripe payment)
 };
 </script>
 
@@ -449,57 +449,47 @@ function go() {
     });
   }
 
+  // DataLayer push for GTM
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'lead_captured',
+    parent_name: payload.parentName,
+    email: payload.email,
+    child_name: payload.childName,
+    child_age: payload.childAge,
+    program: payload.program,
+    variant: variant
+  });
+
   console.log("→ Payload:", JSON.stringify(payload, null, 2));
 
-  if (CONFIG.WEBHOOK_URL && CONFIG.PAYMENT_URL) {
-    const paymentUrl = new URL(CONFIG.PAYMENT_URL);
-    paymentUrl.searchParams.set('email', payload.email);
-    paymentUrl.searchParams.set('name', payload.parentName);
-    paymentUrl.searchParams.set('phone', payload.phone);
-    paymentUrl.searchParams.set('child', payload.childName);
-    paymentUrl.searchParams.set('program', payload.program);
-    paymentUrl.searchParams.set('variant', variant);
-    Object.entries(utmData).forEach(([k, v]) => { if (v) paymentUrl.searchParams.set(k, v); });
+  // Build deposit page URL with all data
+  const depositUrl = new URL(CONFIG.DEPOSIT_PAGE, window.location.origin);
+  depositUrl.searchParams.set('name', payload.parentName);
+  depositUrl.searchParams.set('email', payload.email);
+  depositUrl.searchParams.set('phone', payload.phone);
+  depositUrl.searchParams.set('child', payload.childName);
+  depositUrl.searchParams.set('age', payload.childAge);
+  depositUrl.searchParams.set('program', payload.program);
+  depositUrl.searchParams.set('variant', variant);
+  Object.entries(utmData).forEach(([k, v]) => { if (v) depositUrl.searchParams.set(k, v); });
 
+  // Fire HighLevel webhook for lead capture (non-blocking)
+  if (CONFIG.WEBHOOK_URL) {
     fetch(CONFIG.WEBHOOK_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
-    }).then(() => {
-      window.location.href = paymentUrl.toString();
-    }).catch(() => {
-      window.location.href = paymentUrl.toString();
-    });
-  } else {
-    console.warn("⚠ CONFIG not set — demo mode");
-    setTimeout(() => dn(), 1200);
+    }).catch(err => console.warn('Webhook error:', err));
   }
+
+  // Redirect to deposit page
+  setTimeout(() => {
+    window.location.href = depositUrl.toString();
+  }, 400);
 }
 
-function dn() {
-  const child = gv("c") || "Your child", email = gv("e") || "your email";
-  document.getElementById("ft").style.display = "none";
-  document.getElementById("ff").style.display = "none";
-  const conf = ["🌲","⭐","🏕️","🎉","🌞","✨"].map((e, i) =>
-    `<span style="position:absolute;left:${15+i*13}%;top:0;font-size:${18+(i%3)*6}px;animation:confettiDrop ${(.8+i*.15).toFixed(2)}s ease-out ${(i*.1).toFixed(1)}s both">${e}</span>`
-  ).join("");
-  f.innerHTML = `<div style="text-align:center;padding:4px 0;animation:fadeIn .5s ease-out both">
-    <div style="position:relative;height:50px;margin-bottom:6px">${conf}</div>
-    <h2 style="font-size:23px;font-weight:700;margin:0 0 6px;color:var(--forest)">${child}'s spot is reserved!</h2>
-    <p style="font-size:15px;color:var(--light);margin:0 0 5px">You're in. Now let's get the dates sorted.</p>
-    <p style="font-size:14px;color:var(--stone);margin:0 0 18px">Check <strong style="color:var(--dark)">${email}</strong></p>
-    <div style="background:rgba(45,90,63,0.04);border-radius:10px;padding:16px 14px;border:1px solid rgba(45,90,63,0.08);text-align:left;margin-bottom:12px">
-      <div style="font-size:11px;font-weight:700;color:var(--pine);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px">What happens now</div>
-      ${[{t:"Now",s:"Deposit receipt + confirmation",h:1},{t:"24 hrs",s:`Session options for ${child}'s age — pick up to 5 weeks`,h:1},{t:"This week",s:"Quick medical + emergency form",h:0},{t:"Before camp",s:"Packing list + cabin assignment",h:0}].map(({t,s,h},i)=>`<div style="display:flex;gap:10px;margin-bottom:${i<3?9:0}px;align-items:flex-start">
-        <div style="width:48px;flex-shrink:0;font-size:10px;font-weight:700;color:${h?'var(--ember)':'var(--stone)'};text-align:right;padding-top:2px">${t}</div>
-        <div style="width:7px;display:flex;flex-direction:column;align-items:center;flex-shrink:0;padding-top:3px"><div style="width:6px;height:6px;border-radius:50%;background:${i<2?'var(--ember)':'var(--sand)'}"></div>${i<3?'<div style="width:1.5px;height:14px;background:var(--sand);margin-top:1px"></div>':''}</div>
-        <div style="font-size:13px;color:${h?'var(--dark)':'var(--light)'};font-weight:${h?600:400};line-height:1.4">${s}</div></div>`).join("")}
-    </div>
-    <div style="background:linear-gradient(135deg,var(--forest),var(--pine));border-radius:10px;padding:13px 14px;color:#faf8f4;text-align:left">
-      <div style="font-size:14px;font-weight:700;margin-bottom:3px">Know a family who'd love this?</div>
-      <p style="margin:0;font-size:13px;opacity:0.7;line-height:1.4">Share this — camp's better when kids know someone.</p>
-    </div></div>`;
-}
+/* dn() removed — flow now redirects to deposit.html */
 
 // ═══ RENDER FORM ═══
 const ages = [5,6,7,8,9,10,11,12,13,14,15,16,17].map(a => `<option value="${a}">${a} years old</option>`).join("");
