@@ -148,8 +148,8 @@ body{background:var(--cream);font-family:'Outfit',sans-serif;color:var(--dark);-
 .add-camper-btn:hover{border-color:var(--pine);background:rgba(45,90,63,0.03)}
 
 /* ═══ SUCCESS STATE ═══ */
-.success-overlay{position:fixed;inset:0;background:rgba(250,248,244,0.97);z-index:100;display:flex;align-items:center;justify-content:center;animation:fadeIn .3s ease-out;overflow-y:auto}
-.success-content{max-width:520px;text-align:center;padding:40px 24px}
+.success-overlay{position:fixed;inset:0;background:rgba(250,248,244,0.97);z-index:100;display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;-webkit-overflow-scrolling:touch;animation:fadeIn .3s ease-out}
+.success-content{max-width:520px;text-align:center;padding:40px 24px;margin:auto 0}
 .success-check{width:72px;height:72px;border-radius:50%;background:var(--meadow);margin:0 auto 24px;display:flex;align-items:center;justify-content:center}
 .success-check::after{content:'';display:block;width:24px;height:12px;border-left:3px solid #fff;border-bottom:3px solid #fff;animation:checkmark .4s ease-out .2s both}
 .success-content h2{font-family:'Fraunces',serif;font-size:28px;font-weight:700;color:var(--forest);margin-bottom:10px}
