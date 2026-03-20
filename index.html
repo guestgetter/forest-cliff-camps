@@ -132,9 +132,9 @@ body{background:var(--cream);font-family:'Outfit',sans-serif;color:var(--dark);-
 @media(max-width:600px){.photo-strip{padding:0 16px}}
 .photo-grid{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:4px}
 .photo-grid::-webkit-scrollbar{display:none}
-.photo-grid img{flex:0 0 auto;width:280px;height:240px;object-fit:cover;border-radius:14px;display:block;transition:transform .3s ease;scroll-snap-align:start}
+.photo-grid img{flex:1 1 0;min-width:180px;height:240px;object-fit:cover;border-radius:14px;display:block;transition:transform .3s ease;scroll-snap-align:start}
 .photo-grid img:hover{transform:scale(1.02)}
-@media(max-width:700px){.photo-grid img{width:220px;height:170px}}
+@media(max-width:700px){.photo-grid{flex-wrap:nowrap}.photo-grid img{flex:0 0 auto;width:220px;height:170px}}
 .photo-caption{text-align:center;font-size:15px;color:var(--stone);margin-top:18px;font-style:italic}
 
 /* ═══ CAMP LIFE ═══ */
