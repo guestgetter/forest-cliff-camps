@@ -16,6 +16,40 @@ t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
 document,'script','https://connect.facebook.net/en_US/fbevents.js');
 </script>
 
+<!-- ═══ META CAPI (SERVER-SIDE) ═══ -->
+<script>
+function sendCAPI(eventName, userData, customData) {
+  var eventId = (crypto.randomUUID ? crypto.randomUUID() : 'evt_' + Date.now() + '_' + Math.random().toString(36).slice(2));
+  if (typeof fbq !== 'undefined') {
+    fbq('track', eventName, customData || {}, { eventID: eventId });
+  }
+  var cookies = document.cookie.split(';').reduce(function(acc, c) {
+    var parts = c.trim().split('=');
+    acc[parts[0]] = parts.slice(1).join('=');
+    return acc;
+  }, {});
+  var params = new URLSearchParams(window.location.search);
+  var fbclid = params.get('fbclid');
+  var fbc = fbclid ? ('fb.1.' + Date.now() + '.' + fbclid) : (cookies._fbc || undefined);
+  fetch('/api/meta-event', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      event_name: eventName,
+      event_id: eventId,
+      event_time: Math.floor(Date.now() / 1000),
+      event_source_url: window.location.href,
+      user_data: Object.assign({}, userData || {}, {
+        fbp: cookies._fbp || undefined,
+        fbc: fbc,
+      }),
+      custom_data: customData,
+    }),
+  }).catch(function() {});
+  return eventId;
+}
+</script>
+
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -413,10 +447,18 @@ const childName = leadData.childName || 'your child';
 document.getElementById('childNameTitle').textContent = childName;
 document.getElementById('childInfo').textContent = `${childName}${leadData.childAge ? ', ' + leadData.childAge + ' yrs' : ''} · ${({overnight:'Overnight Camp',day:'Day Camp',both:'Both Programs'})[leadData.program] || 'Camp'}`;
 
-/* ═══ META PIXEL ═══ */
+/* ═══ META PIXEL + CAPI ═══ */
 if (CONFIG.META_PIXEL_ID) {
   fbq('init', CONFIG.META_PIXEL_ID);
-  fbq('track', 'PageView');
+  // PageView via CAPI (deduped with browser pixel)
+  sendCAPI('PageView', {
+    em: leadData.email,
+    ph: leadData.phone,
+    fn: leadData.parentName.split(' ')[0],
+    ln: leadData.parentName.split(' ').slice(1).join(' '),
+    ct: 'london', st: 'on', country: 'ca',
+  });
+  // Custom event — browser-only (no CAPI needed for custom events)
   fbq('trackCustom', 'DatePickerView', { program: leadData.program, child_age: leadData.childAge });
 }
 
@@ -596,14 +638,18 @@ async function submitSelections() {
 
   console.log('→ HighLevel webhook payload:', JSON.stringify(payload, null, 2));
 
-  // Track events
-  if (typeof fbq === 'function' && CONFIG.META_PIXEL_ID) {
-    fbq('track', 'CompleteRegistration', {
-      content_name: 'Forest Cliff Summer 2026 Registration',
-      content_category: leadData.program,
-      num_items: selectedSessions.size
-    });
-  }
+  // Track events — CAPI + browser pixel (deduped)
+  sendCAPI('CompleteRegistration', {
+    em: leadData.email,
+    ph: leadData.phone,
+    fn: leadData.parentName.split(' ')[0],
+    ln: leadData.parentName.split(' ').slice(1).join(' '),
+    ct: 'london', st: 'on', country: 'ca',
+  }, {
+    content_name: 'Forest Cliff Summer 2026 Registration',
+    content_category: leadData.program,
+    num_items: selectedSessions.size,
+  });
 
   window.dataLayer.push({
     event: 'registration_complete',
