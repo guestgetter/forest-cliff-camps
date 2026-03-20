@@ -669,7 +669,7 @@ function showSuccess(sessions) {
         <div class="tl-item">
           <div class="tl-time soon">24–48 hrs</div>
           <div class="tl-dot-col"><div class="tl-dot active"></div><div class="tl-line"></div></div>
-          <div class="tl-text highlight">Session confirmation + payment details</div>
+          <div class="tl-text highlight">Session confirmation + next steps</div>
         </div>
         <div class="tl-item">
           <div class="tl-time later">This week</div>
@@ -696,7 +696,7 @@ function showSuccess(sessions) {
 
 /* ═══ SHARE ═══ */
 function shareLink() {
-  const text = 'My kid is going to Forest Cliff Camps this summer! 🌲🏕️ Check it out — registration is free and takes 30 seconds.';
+  const text = 'My kid is going to Forest Cliff Camps this summer! 🌲🏕️ Check it out — registration takes 30 seconds.';
   const url = window.location.origin;
   if (navigator.share) {
     navigator.share({ title: 'Forest Cliff Camps', text, url }).catch(() => {});
