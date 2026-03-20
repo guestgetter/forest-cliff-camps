@@ -21,9 +21,54 @@ n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
 document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '841367735547546');
-fbq('track', 'PageView');
+// PageView fired via sendCAPI() below — includes both browser pixel + server-side event
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=841367735547546&ev=PageView&noscript=1"/></noscript>
+
+<!-- ═══ META CAPI (SERVER-SIDE) ═══ -->
+<script>
+function sendCAPI(eventName, userData, customData) {
+  var eventId = (crypto.randomUUID ? crypto.randomUUID() : 'evt_' + Date.now() + '_' + Math.random().toString(36).slice(2));
+
+  // Fire browser pixel with matching event_id for deduplication
+  if (typeof fbq !== 'undefined') {
+    fbq('track', eventName, customData || {}, { eventID: eventId });
+  }
+
+  // Read _fbp and _fbc cookies
+  var cookies = document.cookie.split(';').reduce(function(acc, c) {
+    var parts = c.trim().split('=');
+    acc[parts[0]] = parts.slice(1).join('=');
+    return acc;
+  }, {});
+
+  // Build fbc from fbclid if not in cookie
+  var params = new URLSearchParams(window.location.search);
+  var fbclid = params.get('fbclid');
+  var fbc = fbclid ? ('fb.1.' + Date.now() + '.' + fbclid) : (cookies._fbc || undefined);
+
+  fetch('/api/meta-event', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      event_name: eventName,
+      event_id: eventId,
+      event_time: Math.floor(Date.now() / 1000),
+      event_source_url: window.location.href,
+      user_data: Object.assign({}, userData || {}, {
+        fbp: cookies._fbp || undefined,
+        fbc: fbc,
+      }),
+      custom_data: customData,
+    }),
+  }).catch(function() {}); // Silent fail — browser pixel is the fallback
+
+  return eventId;
+}
+
+// PageView CAPI on load
+sendCAPI('PageView');
+</script>
 
 <!-- ═══ A/B SPLIT TEST ═══ -->
 <script>
@@ -457,12 +502,19 @@ function go() {
     timestamp: new Date().toISOString()
   };
 
-  if (typeof fbq === 'function') {
-    fbq('track', 'Lead', {
-      content_name: 'Forest Cliff Summer 2026',
-      content_category: prog
-    });
-  }
+  // Server-side CAPI + browser pixel (deduped via shared event_id)
+  sendCAPI('Lead', {
+    em: gv("e"),
+    ph: gv("ph"),
+    fn: gv("p").split(' ')[0],
+    ln: gv("p").split(' ').slice(1).join(' '),
+    ct: 'london',
+    st: 'on',
+    country: 'ca',
+  }, {
+    content_name: (prog || 'unknown') + ' Camp',
+    content_category: 'summer_camp',
+  });
 
   // DataLayer push for GTM
   window.dataLayer = window.dataLayer || [];
