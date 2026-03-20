@@ -74,6 +74,8 @@ body{background:var(--cream);font-family:'Outfit',sans-serif;color:var(--dark);-
 .hero-inner{position:relative;z-index:2;width:100%;max-width:1180px;margin:0 auto;padding:80px 48px 100px;display:grid;grid-template-columns:1fr 480px;gap:64px;align-items:center}
 @media(max-width:960px){.hero-inner{grid-template-columns:1fr;padding:60px 24px 80px;gap:32px}}
 .hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.12);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.15);border-radius:24px;padding:7px 16px;font-size:13px;font-weight:600;color:rgba(255,255,255,0.9);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:20px}
+.hero-logo{display:block;margin-bottom:20px;filter:brightness(0) invert(1);opacity:0.92;width:200px;height:auto}
+@media(max-width:600px){.hero-logo{width:170px}}
 .hero-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--ember-glow);flex-shrink:0;animation:countPulse 2s ease-in-out infinite}
 .hero h1{font-family:'Fraunces',serif;font-size:clamp(36px,5vw,54px);font-weight:800;color:#fff;line-height:1.08;margin-bottom:24px}
 .hero h1 em{font-style:normal;color:var(--sunlight)}
@@ -223,6 +225,7 @@ body{background:var(--cream);font-family:'Outfit',sans-serif;color:var(--dark);-
   <div class="hero-bg"><img src="fc-hero.jpg" alt="Forest Cliff Camps kids having fun outdoors" width="1920" height="1080" loading="eager"></div>
   <div class="hero-inner">
     <div>
+      <img src="forest-cliff-camp-logo.svg" alt="Forest Cliff Camps" class="hero-logo" width="232" height="50">
       <div class="hero-badge"><span class="dot"></span> Summer 2026 · Sessions filling fast</div>
       <h1 class="hero-headline-a">The week your child talks about <em>for the rest of the year.</em></h1>
       <h1 class="hero-headline-b">Give them the summer <em>they'll never forget.</em></h1>
@@ -257,6 +260,7 @@ body{background:var(--cream);font-family:'Outfit',sans-serif;color:var(--dark);-
   <div class="photo-strip">
     <div class="photo-grid">
       <img src="fc-group.webp" alt="Camp group fun at Forest Cliff" width="600" height="400" loading="lazy">
+      <img src="forest-cliff-camp-friends.jpg" alt="Camp friends smiling together" width="600" height="400" loading="lazy">
       <img src="fc-tubing.webp" alt="Outdoor adventure at camp" width="600" height="400" loading="lazy">
       <img src="fc-thumbsup.jpg" alt="Happy camper" width="600" height="400" loading="lazy">
       <img src="fc-aerial.webp" alt="Forest Cliff Camps grounds" width="600" height="400" loading="lazy">
@@ -286,7 +290,7 @@ body{background:var(--cream);font-family:'Outfit',sans-serif;color:var(--dark);-
 <div class="camp-life">
   <div class="camp-life-grid">
     <div class="cl-img">
-      <img src="fc-group.webp" alt="Camp group at Forest Cliff" width="800" height="500" loading="lazy">
+      <img src="forest-cliff-camp-friends.jpg" alt="Camp friends at Forest Cliff" width="800" height="500" loading="lazy">
       <span class="cl-tag">Friends for life</span>
     </div>
     <div class="cl-img">
@@ -298,7 +302,7 @@ body{background:var(--cream);font-family:'Outfit',sans-serif;color:var(--dark);-
 
 <!-- ═══ TESTIMONIALS ═══ -->
 <div class="testimonials">
-  <div class="testimonials-bg"><img src="fc-group.webp" alt="" width="1920" height="800" loading="lazy" aria-hidden="true"></div>
+  <div class="testimonials-bg"><img src="forest-cliff-camp-friends.jpg" alt="" width="1920" height="800" loading="lazy" aria-hidden="true"></div>
   <div class="testimonials-inner">
     <div class="section-label" style="color:var(--sunlight)">What parents say</div>
     <div class="section-title" style="color:#fff;margin-bottom:32px">"They came back different."</div>
