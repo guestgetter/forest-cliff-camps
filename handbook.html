@@ -80,8 +80,9 @@ body{background:var(--cream);font-family:'Outfit',sans-serif;color:var(--dark);-
 /* ═══ HERO ═══ */
 .hero{position:relative;padding:100px 48px 80px;overflow:hidden;text-align:center}
 .hero-bg{position:absolute;inset:0;z-index:0}
-.hero-bg img{width:100%;height:100%;object-fit:cover}
-.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(27,60,42,0.90),rgba(45,90,63,0.78))}
+.hero-bg img,.hero-bg iframe{width:100%;height:100%;object-fit:cover;pointer-events:none}
+.hero-bg iframe{position:absolute;top:50%;left:50%;width:120%;height:120%;transform:translate(-50%,-50%);object-fit:cover}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(27,60,42,0.88),rgba(45,90,63,0.75))}
 .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to bottom,transparent,var(--cream));z-index:1}
 .hero-inner{position:relative;z-index:2;max-width:720px;margin:0 auto}
 .hero-logo{display:block;margin:0 auto 24px;filter:brightness(0) invert(1);opacity:0.92;width:180px;height:auto}
@@ -196,7 +197,10 @@ body{background:var(--cream);font-family:'Outfit',sans-serif;color:var(--dark);-
 
 <!-- ═══ HERO ═══ -->
 <section class="hero">
-  <div class="hero-bg"><img src="fc-hero.jpg" alt="Forest Cliff Camps" width="1920" height="1080" loading="eager"></div>
+  <div class="hero-bg">
+    <img src="fc-hero.jpg" alt="Forest Cliff Camps" width="1920" height="1080" loading="eager">
+    <iframe id="hero-video" src="https://www.youtube.com/embed/qudlRHwLyBQ?autoplay=1&mute=1&loop=1&playlist=qudlRHwLyBQ&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&start=2" title="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="display:none"></iframe>
+  </div>
   <div class="hero-inner">
     <img src="forest-cliff-camp-logo.svg" alt="Forest Cliff Camps" class="hero-logo" width="232" height="50">
     <div class="hero-badge"><span class="dot"></span> Summer 2026 Parent Handbook</div>
@@ -256,14 +260,6 @@ body{background:var(--cream);font-family:'Outfit',sans-serif;color:var(--dark);-
       <p>Payment plans, family discounts, bursaries based on income. E-transfer, debit, or credit accepted.</p>
     </div>
   </div>
-</div>
-
-<!-- ═══ VIDEO ═══ -->
-<div style="padding:0 48px;max-width:900px;margin:0 auto">
-  <div style="position:relative;padding-bottom:56.25%;height:0;border-radius:16px;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,0.12)">
-    <iframe src="https://www.youtube.com/embed/qudlRHwLyBQ" title="Forest Cliff Camps — Summer Highlights" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe>
-  </div>
-  <p style="text-align:center;font-size:15px;color:var(--stone);margin-top:18px;font-style:italic">This is what their week looks like.</p>
 </div>
 
 <!-- ═══ PHOTO STRIP ═══ -->
@@ -680,6 +676,21 @@ if (stickyEl && heroSection) {
   }, { threshold: 0.1 });
   obs.observe(heroSection);
 }
+
+// ═══ VIDEO BACKGROUND — show once loaded, keep image as fallback ═══
+(function() {
+  var vid = document.getElementById('hero-video');
+  if (!vid) return;
+  // On mobile, autoplay background iframes are unreliable — just keep the image
+  if (window.innerWidth < 768) return;
+  // Show iframe after a short delay to allow autoplay to kick in
+  setTimeout(function() {
+    vid.style.display = 'block';
+    vid.style.opacity = '0';
+    vid.style.transition = 'opacity 1.2s ease';
+    setTimeout(function() { vid.style.opacity = '1'; }, 50);
+  }, 1500);
+})();
 </script>
 </body>
 </html>
