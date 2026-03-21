@@ -80,8 +80,8 @@ body{background:var(--cream);font-family:'Outfit',sans-serif;color:var(--dark);-
 /* ═══ HERO ═══ */
 .hero{position:relative;padding:100px 48px 80px;overflow:hidden;text-align:center}
 .hero-bg{position:absolute;inset:0;z-index:0}
-.hero-bg img,.hero-bg iframe{width:100%;height:100%;object-fit:cover;pointer-events:none}
-.hero-bg iframe{position:absolute;top:50%;left:50%;width:120%;height:120%;transform:translate(-50%,-50%);object-fit:cover}
+.hero-bg img{width:100%;height:100%;object-fit:cover;pointer-events:none}
+.hero-bg iframe{position:absolute;top:50%;left:50%;min-width:177.78vh;min-height:56.25vw;width:auto;height:auto;transform:translate(-50%,-50%);pointer-events:none}
 .hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(27,60,42,0.88),rgba(45,90,63,0.75))}
 .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to bottom,transparent,var(--cream));z-index:1}
 .hero-inner{position:relative;z-index:2;max-width:720px;margin:0 auto}
