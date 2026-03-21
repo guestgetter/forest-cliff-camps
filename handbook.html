@@ -93,7 +93,6 @@ body{background:var(--cream);font-family:'Outfit',sans-serif;color:var(--dark);-
 .dl-btn{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--forest);padding:18px 36px;border-radius:14px;font-size:19px;font-weight:700;text-decoration:none;font-family:inherit;transition:transform .2s,box-shadow .2s;box-shadow:0 8px 32px rgba(0,0,0,0.15)}
 .dl-btn:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,0.2)}
 .dl-btn svg{width:22px;height:22px;flex-shrink:0}
-.dl-note{font-size:14px;color:rgba(255,255,255,0.55);margin-top:14px}
 @media(max-width:600px){.hero{padding:72px 24px 60px}.hero-logo{width:150px}}
 
 /* ═══ PROOF BAR ═══ */
@@ -203,11 +202,10 @@ body{background:var(--cream);font-family:'Outfit',sans-serif;color:var(--dark);-
     <div class="hero-badge"><span class="dot"></span> Summer 2026 Parent Handbook</div>
     <h1>Your 2026 Parent Handbook <em>is ready.</em></h1>
     <p class="hero-sub">Everything you need to know about Forest Cliff — safety, daily life, what to pack, and how to get your child registered.</p>
-    <a href="#handbook-download" class="dl-btn" id="downloadBtn">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      Download the Handbook (PDF)
+    <a href="#highlights" class="dl-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      See What's Inside
     </a>
-    <p class="dl-note">Or keep scrolling — all the highlights are right here.</p>
   </div>
 </section>
 
@@ -222,7 +220,7 @@ body{background:var(--cream);font-family:'Outfit',sans-serif;color:var(--dark);-
 </div>
 
 <!-- ═══ QUICK HIGHLIGHTS ═══ -->
-<div class="section">
+<div class="section" id="highlights">
   <div class="section-label">At a glance</div>
   <div class="section-title">The 6 things parents want to know first.</div>
   <div class="section-sub">We asked 500+ parents what matters most. These came up every single time.</div>
@@ -649,29 +647,6 @@ const registerUrl = buildRegisterUrl();
 document.querySelectorAll('.cta-big, .sticky-cta a').forEach(el => {
   el.href = registerUrl;
 });
-
-// ═══ DOWNLOAD BUTTON TRACKING ═══
-const downloadBtn = document.getElementById('downloadBtn');
-if (downloadBtn) {
-  downloadBtn.addEventListener('click', function(e) {
-    // Track handbook download as a custom event
-    sendCAPI('ViewContent', {
-      em: leadEmail || undefined,
-      fn: leadName ? leadName.split(' ')[0] : undefined,
-      ln: leadName ? leadName.split(' ').slice(1).join(' ') : undefined,
-    }, {
-      content_name: '2026 Parent Handbook',
-      content_category: 'handbook_download',
-    });
-
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: 'handbook_download',
-      email: leadEmail,
-      parent_name: leadName,
-    });
-  });
-}
 
 // ═══ REGISTER BUTTON TRACKING ═══
 document.querySelectorAll('.cta-big').forEach(function(btn) {
