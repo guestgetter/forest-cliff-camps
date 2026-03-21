@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Your 2026 Parent Handbook — Forest Cliff Camps</title>
+<meta name="description" content="Everything you need to know about Forest Cliff Camps — safety, schedules, what to pack, and how to register. Download the 2026 Parent Handbook.">
+<link rel="canonical" href="https://fccamps.ca/handbook">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Your 2026 Parent Handbook — Forest Cliff Camps">
+<meta property="og:description" content="Everything you need to know before camp. Safety, staff ratios, daily schedule, what to pack — plus register for Summer 2026.">
+<meta property="og:image" content="fc-hero.jpg">
+<meta property="og:type" content="website">
+
+<!-- ═══ META PIXEL ═══ -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '841367735547546');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=841367735547546&ev=PageView&noscript=1"/></noscript>
+
+<!-- ═══ META CAPI (SERVER-SIDE) ═══ -->
+<script>
+function sendCAPI(eventName, userData, customData) {
+  var eventId = (crypto.randomUUID ? crypto.randomUUID() : 'evt_' + Date.now() + '_' + Math.random().toString(36).slice(2));
+  if (typeof fbq !== 'undefined') {
+    fbq('track', eventName, customData || {}, { eventID: eventId });
+  }
+  var cookies = document.cookie.split(';').reduce(function(acc, c) {
+    var parts = c.trim().split('=');
+    acc[parts[0]] = parts.slice(1).join('=');
+    return acc;
+  }, {});
+  var params = new URLSearchParams(window.location.search);
+  var fbclid = params.get('fbclid');
+  var fbc = fbclid ? ('fb.1.' + Date.now() + '.' + fbclid) : (cookies._fbc || undefined);
+  fetch('/api/meta-event', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      event_name: eventName,
+      event_id: eventId,
+      event_time: Math.floor(Date.now() / 1000),
+      event_source_url: window.location.href,
+      user_data: Object.assign({}, userData || {}, {
+        fbp: cookies._fbp || undefined,
+        fbc: fbc,
+      }),
+      custom_data: customData,
+    }),
+  }).catch(function() {});
+  return eventId;
+}
+sendCAPI('PageView');
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#1b3c2a;--pine:#2d5a3f;--sage:#5a8a6a;--meadow:#8abb92;
+  --ember:#cc581f;--ember-glow:#e07c3e;--sunlight:#f2c94c;
+  --cream:#faf8f4;--sand:#e8e3d8;--stone:#b5ae9e;
+  --dark:#1a1a1a;--med:#4a4a4a;--light:#777;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--cream);font-family:'Outfit',sans-serif;color:var(--dark);-webkit-font-smoothing:antialiased;font-size:18px;line-height:1.6}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@keyframes breathe{0%,100%{box-shadow:0 4px 20px rgba(204,88,31,0.3)}50%{box-shadow:0 8px 32px rgba(204,88,31,0.55)}}
+@keyframes countPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+@keyframes checkDraw{from{stroke-dashoffset:20}to{stroke-dashoffset:0}}
+.fade-in{animation:fadeIn .3s ease-out both}
+
+/* ═══ HERO ═══ */
+.hero{position:relative;padding:100px 48px 80px;overflow:hidden;text-align:center}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(27,60,42,0.90),rgba(45,90,63,0.78))}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to bottom,transparent,var(--cream));z-index:1}
+.hero-inner{position:relative;z-index:2;max-width:720px;margin:0 auto}
+.hero-logo{display:block;margin:0 auto 24px;filter:brightness(0) invert(1);opacity:0.92;width:180px;height:auto}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.12);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.15);border-radius:24px;padding:7px 16px;font-size:13px;font-weight:600;color:rgba(255,255,255,0.9);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:24px}
+.hero-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--meadow);flex-shrink:0;animation:countPulse 2s ease-in-out infinite}
+.hero h1{font-family:'Fraunces',serif;font-size:clamp(32px,5vw,50px);font-weight:800;color:#fff;line-height:1.1;margin-bottom:18px}
+.hero h1 em{font-style:normal;color:var(--sunlight)}
+.hero-sub{font-size:19px;color:rgba(255,255,255,0.8);line-height:1.6;margin-bottom:32px;max-width:560px;margin-left:auto;margin-right:auto}
+.dl-btn{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--forest);padding:18px 36px;border-radius:14px;font-size:19px;font-weight:700;text-decoration:none;font-family:inherit;transition:transform .2s,box-shadow .2s;box-shadow:0 8px 32px rgba(0,0,0,0.15)}
+.dl-btn:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,0.2)}
+.dl-btn svg{width:22px;height:22px;flex-shrink:0}
+.dl-note{font-size:14px;color:rgba(255,255,255,0.55);margin-top:14px}
+@media(max-width:600px){.hero{padding:72px 24px 60px}.hero-logo{width:150px}}
+
+/* ═══ PROOF BAR ═══ */
+.proof-bar{background:var(--forest);padding:36px 48px;text-align:center;position:relative;z-index:2}
+.proof-bar-inner{max-width:900px;margin:0 auto;display:flex;justify-content:center;gap:56px;flex-wrap:wrap}
+.proof-stat .num{font-family:'Fraunces',serif;font-size:38px;font-weight:700;color:var(--sunlight)}
+.proof-stat .lbl{font-size:14px;color:rgba(255,255,255,0.6);margin-top:4px}
+@media(max-width:600px){.proof-bar{padding:28px 20px}.proof-bar-inner{gap:24px}.proof-stat .num{font-size:28px}}
+
+/* ═══ SECTION ═══ */
+.section{padding:80px 48px;max-width:1000px;margin:0 auto}
+@media(max-width:600px){.section{padding:56px 24px}}
+.section-label{font-size:13px;font-weight:700;color:var(--ember);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px}
+.section-title{font-family:'Fraunces',serif;font-size:clamp(28px,4vw,40px);font-weight:700;color:var(--forest);line-height:1.2;margin-bottom:18px}
+.section-sub{font-size:18px;color:var(--med);line-height:1.7;margin-bottom:40px;max-width:680px}
+
+/* ═══ HIGHLIGHTS GRID ═══ */
+.highlights{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:700px){.highlights{grid-template-columns:1fr;gap:14px}}
+.hl-card{background:#fff;border-radius:16px;padding:28px 24px;border:1px solid var(--sand);transition:transform .2s}
+.hl-card:hover{transform:translateY(-2px)}
+.hl-icon{width:44px;height:44px;border-radius:12px;background:rgba(45,90,63,0.08);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px}
+.hl-card h3{font-size:17px;font-weight:700;color:var(--forest);margin-bottom:6px}
+.hl-card p{font-size:15px;color:var(--med);line-height:1.6}
+
+/* ═══ HANDBOOK SECTIONS (ACCORDION) ═══ */
+.hb-list{display:flex;flex-direction:column;gap:12px}
+.hb{background:#fff;border:1px solid var(--sand);border-radius:12px;overflow:hidden}
+.hb summary{padding:22px 24px;font-size:17px;font-weight:600;color:var(--forest);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.hb summary::after{content:'+';font-size:20px;color:var(--stone);transition:transform .2s;flex-shrink:0}
+.hb[open] summary::after{transform:rotate(45deg)}
+.hb summary .hb-badge{font-size:11px;font-weight:600;background:rgba(45,90,63,0.08);color:var(--pine);padding:4px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:0.05em;flex-shrink:0}
+.hb-body{padding:0 24px 24px;font-size:16px;color:var(--med);line-height:1.7}
+.hb-body h4{font-size:15px;font-weight:700;color:var(--forest);margin:20px 0 8px}
+.hb-body h4:first-child{margin-top:0}
+.hb-body ul{margin:8px 0 8px 20px}
+.hb-body li{margin-bottom:6px}
+.hb-body .checklist{list-style:none;margin-left:0;columns:2;column-gap:24px}
+@media(max-width:600px){.hb-body .checklist{columns:1}}
+.hb-body .checklist li{break-inside:avoid;padding-left:26px;position:relative;margin-bottom:8px}
+.hb-body .checklist li::before{content:'☐';position:absolute;left:0;color:var(--sage)}
+.hb-body .info-box{background:rgba(45,90,63,0.04);border:1px solid rgba(45,90,63,0.1);border-radius:10px;padding:16px 18px;margin:16px 0;font-size:15px}
+.hb-body .info-box strong{color:var(--forest)}
+.hb-body .warn-box{background:rgba(204,88,31,0.04);border:1px solid rgba(204,88,31,0.12);border-radius:10px;padding:16px 18px;margin:16px 0;font-size:15px}
+.hb-body .warn-box strong{color:var(--ember)}
+
+/* ═══ TESTIMONIALS ═══ */
+.testimonials{position:relative;padding:80px 48px;overflow:hidden}
+.testimonials-bg{position:absolute;inset:0;z-index:0}
+.testimonials-bg img{width:100%;height:100%;object-fit:cover;object-position:center 25%}
+.testimonials-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(27,60,42,0.85),rgba(45,90,63,0.78))}
+@media(max-width:600px){.testimonials{padding:56px 24px}}
+.testimonials-inner{max-width:1000px;margin:0 auto;position:relative;z-index:1}
+.test-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+@media(max-width:700px){.test-grid{grid-template-columns:1fr}}
+.test-card{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:26px;backdrop-filter:blur(4px)}
+.test-quote{font-size:16px;color:rgba(255,255,255,0.88);line-height:1.7;font-style:italic;margin-bottom:12px}
+.test-name{font-size:14px;color:var(--sunlight);font-weight:600}
+.test-src{font-size:12px;color:rgba(255,255,255,0.45);font-weight:400;margin-left:6px}
+
+/* ═══ AVAILABILITY / CTA SECTION ═══ */
+.avail-section{padding:80px 48px;max-width:900px;margin:0 auto;text-align:center}
+@media(max-width:600px){.avail-section{padding:56px 24px}}
+.avail-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:36px 0 40px;text-align:left}
+@media(max-width:600px){.avail-grid{grid-template-columns:1fr}}
+.avail-card{background:#fff;border:1px solid var(--sand);border-radius:14px;padding:22px 20px;display:flex;gap:14px;align-items:flex-start}
+.avail-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:6px}
+.avail-dot.green{background:var(--meadow)}
+.avail-dot.yellow{background:var(--sunlight)}
+.avail-dot.red{background:#d44}
+.avail-card h4{font-size:16px;font-weight:700;color:var(--forest);margin-bottom:2px}
+.avail-card p{font-size:14px;color:var(--light);line-height:1.5}
+.cta-big{display:inline-flex;align-items:center;gap:10px;background:var(--ember);color:#fff;padding:20px 48px;border-radius:14px;font-size:20px;font-weight:700;text-decoration:none;font-family:inherit;animation:breathe 2.5s ease-in-out infinite;transition:background .2s}
+.cta-big:hover{background:#b84e18}
+.cta-sub{font-size:14px;color:var(--stone);margin-top:14px}
+
+/* ═══ FINAL CTA ═══ */
+.final-cta{position:relative;padding:100px 48px;text-align:center;overflow:hidden}
+.final-bg{position:absolute;inset:0;z-index:0}
+.final-bg img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.final-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(27,60,42,0.78),rgba(45,90,63,0.72))}
+.final-cta-inner{position:relative;z-index:1}
+@media(max-width:600px){.final-cta{padding:56px 24px}}
+.final-cta h2{font-family:'Fraunces',serif;font-size:clamp(28px,4.5vw,42px);font-weight:700;color:#fff;margin-bottom:14px}
+.final-cta p{font-size:18px;color:rgba(255,255,255,0.75);margin-bottom:28px}
+.final-cta a.cta-big{box-shadow:0 4px 24px rgba(204,88,31,0.35)}
+
+/* ═══ FOOTER ═══ */
+.footer{background:var(--dark);padding:32px 48px;text-align:center}
+.footer p{font-size:13px;color:rgba(255,255,255,0.35)}
+.footer a{color:rgba(255,255,255,0.35);text-decoration:none}
+
+/* ═══ STICKY MOBILE CTA ═══ */
+.sticky-cta{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(250,248,244,0.97);backdrop-filter:blur(12px);border-top:1px solid var(--sand);padding:14px 20px;z-index:100;text-align:center}
+.sticky-cta a{display:block;background:var(--ember);color:#fff;padding:15px;border-radius:10px;font-size:17px;font-weight:700;text-decoration:none;font-family:inherit;animation:breathe 2.5s ease-in-out infinite}
+.sticky-cta .st{font-size:12px;color:var(--stone);margin-top:5px}
+@media(max-width:960px){.sticky-cta{display:block}body{padding-bottom:90px}}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-bg"><img src="fc-hero.jpg" alt="Forest Cliff Camps" width="1920" height="1080" loading="eager"></div>
+  <div class="hero-inner">
+    <img src="forest-cliff-camp-logo.svg" alt="Forest Cliff Camps" class="hero-logo" width="232" height="50">
+    <div class="hero-badge"><span class="dot"></span> Summer 2026 Parent Handbook</div>
+    <h1>Your 2026 Parent Handbook <em>is ready.</em></h1>
+    <p class="hero-sub">Everything you need to know about Forest Cliff — safety, daily life, what to pack, and how to get your child registered.</p>
+    <a href="#handbook-download" class="dl-btn" id="downloadBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download the Handbook (PDF)
+    </a>
+    <p class="dl-note">Or keep scrolling — all the highlights are right here.</p>
+  </div>
+</section>
+
+<!-- ═══ PROOF BAR ═══ -->
+<div class="proof-bar">
+  <div class="proof-bar-inner">
+    <div class="proof-stat"><div class="num">4.8 ★</div><div class="lbl">Google Reviews (368)</div></div>
+    <div class="proof-stat"><div class="num">87</div><div class="lbl">Years running</div></div>
+    <div class="proof-stat"><div class="num">626+</div><div class="lbl">Campers registered</div></div>
+    <div class="proof-stat"><div class="num">1:5</div><div class="lbl">Staff-to-camper ratio</div></div>
+  </div>
+</div>
+
+<!-- ═══ QUICK HIGHLIGHTS ═══ -->
+<div class="section">
+  <div class="section-label">At a glance</div>
+  <div class="section-title">The 6 things parents want to know first.</div>
+  <div class="section-sub">We asked 500+ parents what matters most. These came up every single time.</div>
+  <div class="highlights">
+    <div class="hl-card">
+      <div class="hl-icon">🛡️</div>
+      <h3>Safety-first culture</h3>
+      <p>OCA accredited since 1997. Vulnerable sector checks on every staff member. 24/7 health professionals on-site at Overnight Camp.</p>
+    </div>
+    <div class="hl-card">
+      <div class="hl-icon">👥</div>
+      <h3>1:5 staff-to-camper ratio</h3>
+      <p>Two trained cabin leaders stay with the same small group all week. Your child is known — not just counted.</p>
+    </div>
+    <div class="hl-card">
+      <div class="hl-icon">📅</div>
+      <h3>Daily schedule packed with adventure</h3>
+      <p>Waterfront, archery, high adventure, campfire — plus meaningful small-group time. No screens, no idle time.</p>
+    </div>
+    <div class="hl-card">
+      <div class="hl-icon">🎒</div>
+      <h3>Packing list included</h3>
+      <p>Exactly what to bring, what not to bring, and how to label everything so it comes home. Scroll down for the full checklist.</p>
+    </div>
+    <div class="hl-card">
+      <div class="hl-icon">🏥</div>
+      <h3>Medical care handled</h3>
+      <p>Meds dispensed on schedule. EpiPens and inhalers managed. We call you immediately for anything beyond a scrape.</p>
+    </div>
+    <div class="hl-card">
+      <div class="hl-icon">💰</div>
+      <h3>Flexible payment &amp; financial aid</h3>
+      <p>Payment plans, family discounts, bursaries based on income. E-transfer, debit, or credit accepted.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PHOTO STRIP ═══ -->
+<div style="padding:0 48px;max-width:1180px;margin:0 auto">
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+    <img src="forest-cliff-camp-friends.jpg" alt="Camp friends smiling" width="600" height="400" loading="lazy" style="width:100%;height:240px;object-fit:cover;border-radius:14px;display:block">
+    <img src="fc-tubing.webp" alt="Outdoor adventure" width="600" height="400" loading="lazy" style="width:100%;height:240px;object-fit:cover;border-radius:14px;display:block">
+    <img src="fc-thumbsup.jpg" alt="Happy camper" width="600" height="400" loading="lazy" style="width:100%;height:240px;object-fit:cover;border-radius:14px;display:block">
+  </div>
+</div>
+
+<!-- ═══ FULL HANDBOOK (EXPANDABLE SECTIONS) ═══ -->
+<div class="section" id="handbook-download">
+  <div class="section-label">Full handbook</div>
+  <div class="section-title">Everything you need, section by section.</div>
+  <div class="section-sub">Tap any section to expand. It's all here — no PDF required.</div>
+  <div class="hb-list">
+
+    <!-- SAFETY -->
+    <details class="hb" open>
+      <summary>Safety &amp; Accreditation <span class="hb-badge">Most read</span></summary>
+      <div class="hb-body">
+        <h4>Accreditation</h4>
+        <p>Since 1997, Forest Cliff has been accredited by the <strong>Ontario Camps Association (OCA)</strong>. We're also members of Christian Camping International Canada. Inflatable amusement devices are licensed with TSSA.</p>
+
+        <h4>Equipment &amp; Activity Safety</h4>
+        <p>Every activity area has 1–2 highly trained staff who directly observe operations, conduct debriefs, and pull worn equipment from service. All ropes, carabiners, and boats are inspected before each use.</p>
+        <ul>
+          <li><strong>High adventure</strong> — inspected annually by Adventureworks (independent, certified)</li>
+          <li><strong>Inflatables</strong> — inspected by TSSA; maintained by certified ADM-I mechanics</li>
+          <li><strong>Archery</strong> — maintained through The Archer's Nook</li>
+          <li><strong>Waterfront</strong> — supervised by NLS-certified lifeguards</li>
+          <li><strong>Boats/PWC</strong> — serviced by certified marine technicians</li>
+        </ul>
+
+        <h4>Personal Safety</h4>
+        <p>No staff member is ever alone in a private location with a camper. All visitors sign in and wear ID badges. We follow the <em>Duty to Report</em> under the Child and Family Services Act.</p>
+
+        <div class="info-box">
+          <strong>Staff-to-camper ratios:</strong> Overnight Camp is 1:5. Day Camp is 1:7. These exceed accreditation requirements. Campers who need 1:1 support can register for additional assistance.
+        </div>
+
+        <h4>Emergency Preparedness</h4>
+        <p>All staff are trained in CPR, First Aid, and our Emergency Action Plan covering severe weather, fire, and medical emergencies. A signal system allows instant communication across all sites. Lead staff are connected via radios and phones. Overnight Camp has a health care team available 24/7.</p>
+      </div>
+    </details>
+
+    <!-- STAFF -->
+    <details class="hb">
+      <summary>Staff &amp; Training</summary>
+      <div class="hb-body">
+        <h4>Who we hire</h4>
+        <p>We only hire the best. Interviews cover faith maturity, experience with kids, and overall competencies. We require <strong>3 positive, non-family references</strong> and a <strong>vulnerable sector check</strong> for anyone directly responsible for children.</p>
+
+        <div class="info-box">
+          <strong>Why paid staff?</strong> While many camps use volunteers, we've found that hiring staff ensures consistent, quality experiences all summer long. We attract the best Christian young adults by compensating them fairly.
+        </div>
+
+        <h4>Training areas</h4>
+        <ul>
+          <li><strong>Camper Care</strong> — behaviour, bullying, homesickness, bedwetting, individual attention</li>
+          <li><strong>Safety Protocols</strong> — severe weather, fire, medical emergencies</li>
+          <li><strong>Child Protection</strong> — prevention and reporting of suspected abuse</li>
+          <li><strong>Conflict Management</strong> — helping campers work through disagreements</li>
+          <li><strong>Guest Services</strong> — greeting families, creating an exceptional experience</li>
+          <li><strong>First Aid</strong> — bee stings, stomach aches, medication distribution</li>
+          <li><strong>Suicide Alertness</strong> — recognizing and responding to at-risk youth</li>
+          <li><strong>The Gospel</strong> — sharing faith in a truthful, sensitive, age-appropriate way</li>
+        </ul>
+        <p>Activity staff receive additional training specific to their area, with emphasis on safety and engaging all campers. Lifeguards hold NLS certification. High adventure staff are trained through Adventureworks. Boating staff hold PCOC and driver's licenses.</p>
+      </div>
+    </details>
+
+    <!-- REGISTRATION -->
+    <details class="hb">
+      <summary>Registration &amp; Payment</summary>
+      <div class="hb-body">
+        <h4>How to register</h4>
+        <p>Only a deposit is required to hold your spot:</p>
+        <ul>
+          <li><strong>$50</strong> per Day Camp session</li>
+          <li><strong>$200</strong> per Overnight Camp session</li>
+        </ul>
+        <p>Balances are due May 1. Payment plans are available.</p>
+
+        <h4>Payment methods</h4>
+        <ul>
+          <li><strong>E-transfer</strong> (preferred — lower processing fees) — send to info@forestcliff.ca, no password required</li>
+          <li><strong>Pre-authorized debit</strong> — enter banking info during registration (3–5 business days to process)</li>
+          <li><strong>Visa &amp; MasterCard</strong> — accepted, but other methods help keep fees low</li>
+        </ul>
+
+        <h4>Friend requests</h4>
+        <p>Request one cabin mate (Overnight, same gender/similar age) or one group mate (Day Camp, similar age) during registration. Email info@forestcliff.ca for additional requests or sibling arrangements.</p>
+
+        <h4>Cancellation policy</h4>
+        <ul>
+          <li><strong>45+ days before camp</strong> — full refund (less $40 admin fee)</li>
+          <li><strong>8–44 days before</strong> — 50% refund (less $40 admin fee)</li>
+          <li><strong>7 days or less</strong> — non-refundable</li>
+        </ul>
+        <p>Refunds processed within 3 weeks. To cancel or transfer: info@forestcliff.ca or 519-913-2744 x 100.</p>
+      </div>
+    </details>
+
+    <!-- FINANCIAL AID -->
+    <details class="hb">
+      <summary>Financial Assistance</summary>
+      <div class="hb-body">
+        <h4>Family discount</h4>
+        <ul>
+          <li><strong>Day Camp</strong> — $30 off the 3rd+ child from the same household</li>
+          <li><strong>Overnight Camp</strong> — $50 off the 3rd+ child for Kids Camp, Jr. High, or SALT</li>
+        </ul>
+
+        <h4>Bursaries</h4>
+        <p>Income-based bursaries cover a percentage of one full week of Overnight Camp. During registration, select "bursary" when asked about fee coverage. The bursary deposit is $50/camper (fully refundable if not approved). Send your most recent Notice of Assessment to info@forestcliff.ca.</p>
+
+        <h4>SummerFund</h4>
+        <p>A referral-based program allowing organizations to request subsidized registration for a child in their care community. Made possible by generous donors.</p>
+
+        <h4>Volunteer discount</h4>
+        <p>Parents/guardians who volunteer the same week receive 50% off their camper's registration. Roles include housekeeping, maintenance, cook's helper, office, and Health Centre. Babysitting for younger children can be arranged.</p>
+      </div>
+    </details>
+
+    <!-- OVERNIGHT CAMP -->
+    <details class="hb">
+      <summary>Overnight Camp — What to Know</summary>
+      <div class="hb-body">
+        <h4>Location</h4>
+        <p>8324 Glendale Drive, Lambton Shores, Ontario — 519-913-2744 x 101</p>
+
+        <h4>Open House</h4>
+        <div class="info-box">
+          <strong>Saturday, June 6, 2026 — 3:00 to 6:00 PM</strong><br>
+          Meet the staff, tour the grounds, try activities, and enjoy dinner with other camp families. Great for new and returning families.
+        </div>
+
+        <h4>Before you arrive</h4>
+        <ul>
+          <li>Balance must be paid in full</li>
+          <li>Update address, email, phone, and health card number if changed</li>
+          <li>Verify your authorized pick-up list</li>
+          <li>You'll receive a "prior to arrival" email 2.5 weeks before camp</li>
+        </ul>
+
+        <h4>Check-in times</h4>
+        <ul>
+          <li><strong>SALT</strong> — Sunday 4:00 PM</li>
+          <li><strong>Junior Camp (Sun–Tue)</strong> — Sunday 4:00 PM</li>
+          <li><strong>Junior Camp (Wed–Fri)</strong> — Wednesday 2:00 PM</li>
+          <li><strong>Kids Camp / Girls Week / Jr. High</strong> — Sunday 4:00 PM</li>
+        </ul>
+        <p><strong>Pick-up:</strong> 4:00 PM for all sessions. Photo ID required. Go directly to cabins.</p>
+
+        <h4>Parent dinner</h4>
+        <p>For parents of Kids Campers and Junior Campers (Sunday start) — once your camper is settled, join us for dinner at 5:00 PM and stay for the Opening Rally at 6:00 PM. Siblings welcome.</p>
+
+        <h4>Health &amp; medical</h4>
+        <p>All campers and staff wear t-shirts at the waterfront (sun safety). Send a hat, sunglasses, sunscreen, bug spray, and a water bottle. Our kitchen handles special diets and food allergies (additional charge may apply for vegetarian, dairy-free, egg-free, or gluten-free).</p>
+        <div class="warn-box">
+          <strong>Peanut/nut free property.</strong> No peanut or tree nut products may be brought to camp.
+        </div>
+        <p>All medications go to the Health Centre at check-in (original packaging). EpiPens and inhalers can stay with the camper if you choose — discuss at the Health Centre.</p>
+
+        <h4>Packing list</h4>
+        <ul class="checklist">
+          <li>Pajamas, underwear, extra socks</li>
+          <li>Warm jacket or sweatshirt</li>
+          <li>Hat and raincoat/poncho</li>
+          <li>Swimsuit and t-shirt for swimming</li>
+          <li>Beach towel and sunscreen</li>
+          <li>Swim shoes/sandals (can get wet)</li>
+          <li>Closed-toed shoes (required)</li>
+          <li>Towel, washcloth, toiletries</li>
+          <li>Sleeping bag and pillow (bagged)</li>
+          <li>Water bottle</li>
+          <li>Shorts, t-shirts, long pants</li>
+          <li>Insect repellent</li>
+          <li>Disposable camera (optional)</li>
+          <li>Medication in original package</li>
+          <li>Plastic bag for dirty/wet laundry</li>
+          <li>Twin sheet for mattress (optional)</li>
+        </ul>
+        <div class="warn-box">
+          <strong>Do NOT pack:</strong> Cell phones, smart watches, gaming devices, spending money, weapons, lighters, tobacco/vapes, peanut/nut products, over-the-counter medication (supplied by Health Centre).
+        </div>
+
+        <h4>Mail &amp; care packages</h4>
+        <p>Campers love getting mail! Leave notes at the check-in table, or email <strong>mail@forestcliff.ca</strong> with the camper's name and cabin number in the subject line. Emails received by 11:00 AM are printed and delivered at lunch.</p>
+      </div>
+    </details>
+
+    <!-- DAY CAMP -->
+    <details class="hb">
+      <summary>Day Camp — What to Know</summary>
+      <div class="hb-body">
+        <h4>Locations</h4>
+        <p>Various church locations across Southwestern Ontario, plus a new <strong>Day Camp at the Lake</strong> session in 2026 at the Lambton Shores property.</p>
+
+        <h4>Daily schedule</h4>
+        <ul>
+          <li><strong>Check-in:</strong> 8:45 AM (8:15 AM at the Lake; 8:30 AM for ACT)</li>
+          <li><strong>Pick-up:</strong> 4:00 PM daily — photo ID required, no exceptions</li>
+          <li><strong>Extended care:</strong> Until 5:15 PM — $45/camper/week (flat rate)</li>
+        </ul>
+
+        <h4>What to bring</h4>
+        <ul class="checklist">
+          <li>Hat</li>
+          <li>Sunscreen</li>
+          <li>Water bottle</li>
+          <li>Closed-toed shoes</li>
+          <li>Water shoes (for water days)</li>
+          <li>Bathing suit</li>
+          <li>Extra t-shirt (water activities)</li>
+          <li>Towel</li>
+          <li>Plastic bag for wet items</li>
+          <li>Lunch and snacks (peanut/nut safe)</li>
+          <li>Medication if needed (original packaging)</li>
+        </ul>
+
+        <h4>Health &amp; safety</h4>
+        <p>Complete first aid kits at every location. Sunscreen applied every 2 hours. Water breaks every 15 minutes on extreme heat days. We serve only peanut/tree nut-free snacks. Parents must send peanut/nut-safe lunches.</p>
+
+        <h4>Support for complex needs</h4>
+        <p>Day Camp doesn't provide 1:1 support, but we collaborate with families to accommodate existing support workers. Email <strong>support@forestcliff.ca</strong> if your child has complex needs.</p>
+      </div>
+    </details>
+
+    <!-- SUPPORT / SPECIAL NEEDS -->
+    <details class="hb">
+      <summary>Support for Campers with Complex Needs</summary>
+      <div class="hb-body">
+        <p>Forest Cliff wants every camper to have an amazing experience. Through our integrative programming, we strive to meet complex needs — physical, behavioural, dietary, or medical.</p>
+
+        <h4>Overnight Camp</h4>
+        <p>Campers with complex needs may be paired with a <strong>1:1 cabin leader</strong> for support and individual attention. We'll collect additional information to determine how to create the best experience. Contact <strong>support@forestcliff.ca</strong>.</p>
+
+        <h4>Day Camp &amp; Day Camp at the Lake</h4>
+        <p>We don't provide 1:1 support at Day Camp, but we welcome families to bring their existing support worker (EA, respite worker, etc.). Email <strong>support@forestcliff.ca</strong> to coordinate.</p>
+
+        <div class="info-box">
+          <strong>Tip:</strong> Even if your child doesn't need 1:1 support, include any helpful details in the online registration — group leaders use this info to give your camper the best possible week.
+        </div>
+      </div>
+    </details>
+
+    <!-- BEHAVIOUR -->
+    <details class="hb">
+      <summary>Behaviour Management &amp; Anti-Bullying</summary>
+      <div class="hb-body">
+        <p>All group leaders are trained in behaviour management and anti-bullying. Our approach:</p>
+        <ul>
+          <li>Remove the child from the situation privately</li>
+          <li>Partner with the camper to find a solution that works for everyone</li>
+          <li>Grace is given; consequences are enforced when necessary</li>
+          <li>If behaviour doesn't change, parents/guardians are called to discuss options</li>
+        </ul>
+        <p>The directors reserve the right to dismiss any child who has rejected the reasonable controls of camp.</p>
+      </div>
+    </details>
+
+  </div>
+</div>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<div class="testimonials">
+  <div class="testimonials-bg"><img src="forest-cliff-camps-friends-2.jpg" alt="" width="1920" height="800" loading="lazy" aria-hidden="true"></div>
+  <div class="testimonials-inner">
+    <div class="section-label" style="color:var(--sunlight)">What parents say</div>
+    <div class="section-title" style="color:#fff;margin-bottom:32px">"They came back different."</div>
+    <div class="test-grid">
+      <div class="test-card"><div class="test-quote">"When my daughter came back from camp, she had accomplished so much more than we could have imagined. She became more independent, found a stronger sense of who she is, picked up new skills, met incredible friends, and created unforgettable memories."</div><div class="test-name">— Victoria R.</div></div>
+      <div class="test-card"><div class="test-quote">"Our children came home every day not just energized and happy, but more confident, cooperative, and inspired. Sometimes the magic words to get them out of bed were 'there's camp today.' It's rare to find a camp that beautifully balances fun, safety, empathy, and professionalism."</div><div class="test-name">— Ola A. <span class="test-src">Google Review ★★★★★</span></div></div>
+      <div class="test-card"><div class="test-quote">"You all don't know how much your camp has changed and impacted our family's lives. We love you and appreciate all you do and have done for our family."</div><div class="test-name">— Patricia L.</div></div>
+      <div class="test-card"><div class="test-quote">"I felt completely at ease with the safety of my child and was so impressed with the staff and grounds. 10/10 would recommend!"</div><div class="test-name">— Christina H. <span class="test-src">Google Review ★★★★★</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SESSION AVAILABILITY + CTA ═══ -->
+<div class="avail-section" id="register-cta">
+  <div class="section-label">Summer 2026</div>
+  <div class="section-title" style="font-family:'Fraunces',serif">Ready to lock in their spot?</div>
+  <p style="font-size:18px;color:var(--med);line-height:1.7;max-width:560px;margin:0 auto 8px">Sessions are filling fast. Pick your preferred weeks and we'll confirm your child's spot.</p>
+
+  <div class="avail-grid">
+    <div class="avail-card">
+      <div class="avail-dot green"></div>
+      <div>
+        <h4>Kids Camp (ages 8–11)</h4>
+        <p>Multiple weeks available — spots filling steadily</p>
+      </div>
+    </div>
+    <div class="avail-card">
+      <div class="avail-dot green"></div>
+      <div>
+        <h4>Junior Camp (ages 5–7)</h4>
+        <p>Sun–Tue and Wed–Fri sessions open</p>
+      </div>
+    </div>
+    <div class="avail-card">
+      <div class="avail-dot yellow"></div>
+      <div>
+        <h4>Jr. High Camp (ages 12–14)</h4>
+        <p>Limited availability — popular weeks going fast</p>
+      </div>
+    </div>
+    <div class="avail-card">
+      <div class="avail-dot yellow"></div>
+      <div>
+        <h4>Day Camp (ages 5–12)</h4>
+        <p>Multiple locations — some weeks nearly full</p>
+      </div>
+    </div>
+  </div>
+
+  <a href="/" class="cta-big" id="registerBtn">Pick Your Sessions →</a>
+  <p class="cta-sub">Takes 30 seconds. Just your info + preferred weeks.</p>
+</div>
+
+<!-- ═══ FINAL CTA ═══ -->
+<div class="final-cta">
+  <div class="final-bg"><img src="fc-hero.jpg" alt="" width="1920" height="800" loading="lazy" aria-hidden="true"></div>
+  <div class="final-cta-inner">
+    <h2>626 families already in.<br>Your child's week is waiting.</h2>
+    <p>Register now, pick your dates, and we'll handle the rest.</p>
+    <a href="/" class="cta-big">Reserve Their Spot →</a>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<div class="footer"><p>© 2026 Forest Cliff Camps · 87 years of adventure · <a href="tel:5199132744">519-913-2744</a> · OCA Accredited</p></div>
+
+<!-- ═══ STICKY MOBILE CTA ═══ -->
+<div class="sticky-cta" id="stickyCta">
+  <a href="/" id="stickyLink">Reserve Their Spot →</a>
+  <div class="st">Takes 30 seconds · Pick your preferred weeks</div>
+</div>
+
+<script>
+// ═══ CONFIGURATION ═══
+const META_PIXEL_ID = '841367735547546';
+
+// Parse UTM and lead data from URL params (passed from TOFU ad → HighLevel → here)
+const urlParams = new URLSearchParams(window.location.search);
+const leadEmail = urlParams.get('email') || '';
+const leadName = urlParams.get('name') || '';
+
+const utmData = {
+  utm_source: urlParams.get('utm_source') || '',
+  utm_medium: urlParams.get('utm_medium') || '',
+  utm_campaign: urlParams.get('utm_campaign') || '',
+  utm_content: urlParams.get('utm_content') || '',
+  utm_term: urlParams.get('utm_term') || '',
+  fbclid: urlParams.get('fbclid') || '',
+  gclid: urlParams.get('gclid') || '',
+};
+
+// ═══ PERSONALIZE IF WE HAVE THEIR NAME ═══
+if (leadName) {
+  const firstName = leadName.split(' ')[0];
+  const heroTitle = document.querySelector('.hero h1');
+  if (heroTitle) {
+    heroTitle.innerHTML = firstName + "'s Parent Handbook <em>is ready.</em>";
+  }
+}
+
+// ═══ BUILD REGISTER URL WITH PRE-FILLED DATA ═══
+function buildRegisterUrl() {
+  const url = new URL('/', window.location.origin);
+  // Pass through any lead data so the form can be pre-filled
+  if (leadEmail) url.searchParams.set('email', leadEmail);
+  if (leadName) url.searchParams.set('name', leadName);
+  if (urlParams.get('phone')) url.searchParams.set('phone', urlParams.get('phone'));
+  if (urlParams.get('child')) url.searchParams.set('child', urlParams.get('child'));
+  if (urlParams.get('age')) url.searchParams.set('age', urlParams.get('age'));
+  if (urlParams.get('program')) url.searchParams.set('program', urlParams.get('program'));
+  // Pass UTMs
+  Object.entries(utmData).forEach(([k, v]) => { if (v) url.searchParams.set(k, v); });
+  url.searchParams.set('ref', 'handbook');
+  return url.toString();
+}
+
+// Update all CTA links to include lead data
+const registerUrl = buildRegisterUrl();
+document.querySelectorAll('.cta-big, .sticky-cta a').forEach(el => {
+  el.href = registerUrl;
+});
+
+// ═══ DOWNLOAD BUTTON TRACKING ═══
+const downloadBtn = document.getElementById('downloadBtn');
+if (downloadBtn) {
+  downloadBtn.addEventListener('click', function(e) {
+    // Track handbook download as a custom event
+    sendCAPI('ViewContent', {
+      em: leadEmail || undefined,
+      fn: leadName ? leadName.split(' ')[0] : undefined,
+      ln: leadName ? leadName.split(' ').slice(1).join(' ') : undefined,
+    }, {
+      content_name: '2026 Parent Handbook',
+      content_category: 'handbook_download',
+    });
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'handbook_download',
+      email: leadEmail,
+      parent_name: leadName,
+    });
+  });
+}
+
+// ═══ REGISTER BUTTON TRACKING ═══
+document.querySelectorAll('.cta-big').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    sendCAPI('InitiateCheckout', {
+      em: leadEmail || undefined,
+      fn: leadName ? leadName.split(' ')[0] : undefined,
+      ln: leadName ? leadName.split(' ').slice(1).join(' ') : undefined,
+    }, {
+      content_name: 'Handbook to Registration',
+      content_category: 'summer_camp',
+    });
+  });
+});
+
+// ═══ STICKY CTA VISIBILITY ═══
+const stickyEl = document.getElementById('stickyCta');
+const heroSection = document.querySelector('.hero');
+if (stickyEl && heroSection) {
+  const obs = new IntersectionObserver(([e]) => {
+    stickyEl.style.transform = e.isIntersecting ? 'translateY(100%)' : 'translateY(0)';
+    stickyEl.style.transition = 'transform .3s ease';
+  }, { threshold: 0.1 });
+  obs.observe(heroSection);
+}
+</script>
+</body>
+</html>

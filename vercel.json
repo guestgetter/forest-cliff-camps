@@ -2,7 +2,8 @@
   "rewrites": [
     { "source": "/", "destination": "/index.html" },
     { "source": "/deposit", "destination": "/deposit.html" },
-    { "source": "/register", "destination": "/register.html" }
+    { "source": "/register", "destination": "/register.html" },
+    { "source": "/handbook", "destination": "/handbook.html" }
   ],
   "headers": [
     {
