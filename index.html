@@ -520,6 +520,13 @@ function go() {
     phone: gv("ph"),
     childName: gv("c"),
     childAge: gv("a"),
+    childAgeRange: (function(age) {
+      var a = parseInt(age);
+      if (a <= 8) return 'Grade 1-3';
+      if (a <= 11) return 'Grade 4-6';
+      if (a <= 14) return 'Grade 7-9';
+      return 'Grade 7-9';
+    })(gv("a")),
     program: prog,
     variant: variant,
     source: "vercel_landing",
