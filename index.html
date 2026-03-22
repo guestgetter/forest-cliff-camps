@@ -505,9 +505,17 @@ function go() {
   btn.innerHTML = '<div class="spinner"></div>';
   btn.style.pointerEvents = 'none';
 
+  const fullName = gv("p");
+  const nameParts = fullName.trim().split(/\s+/);
+  const firstName = nameParts[0] || '';
+  const lastName = nameParts.slice(1).join(' ') || '';
+
   const payload = {
     event: 'lead_capture',
-    parentName: gv("p"),
+    parentName: fullName,
+    firstName: firstName,
+    lastName: lastName,
+    name: fullName,
     email: gv("e"),
     phone: gv("ph"),
     childName: gv("c"),
