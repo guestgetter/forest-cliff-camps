@@ -279,29 +279,14 @@ function go(){
   };
   console.log("→ Webhook:", JSON.stringify(payload, null, 2));
 
-  // ═══════════════════════════════════════════════════════
-  // PRODUCTION WIRING — uncomment and set your URLs:
-  //
-  // 1. HighLevel Webhook (creates contact + triggers workflow)
-  // const WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/YOUR_WEBHOOK_ID';
-  //
-  // 2. Stripe Checkout or HighLevel Order Form (for $30 deposit)
-  // const PAYMENT_URL = 'https://checkout.stripe.com/YOUR_SESSION_ID';
-  //    — OR —
-  // const PAYMENT_URL = 'https://your-highlevel-funnel.com/summer-2026-deposit';
-  //
-  // fetch(WEBHOOK_URL, {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify(payload)
-  // }).then(() => {
-  //   window.location.href = PAYMENT_URL;
-  // }).catch(() => {
-  //   window.location.href = PAYMENT_URL; // still redirect on error
-  // });
-  // ═══════════════════════════════════════════════════════
+  // Fire HighLevel webhook (non-blocking)
+  fetch('https://services.leadconnectorhq.com/hooks/xqdVcLM6XVIjSA28TpaT/webhook-trigger/7a09355a-b276-4cbe-a222-c741da37c8b5', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  }).catch(err => console.warn('Webhook error:', err));
 
-  // DEMO: show confirmation after 1.2s (remove in production)
+  // Show confirmation (swap to redirect when deposit page is live)
   setTimeout(()=>dn(), 1200);
 }
 function dn(){
