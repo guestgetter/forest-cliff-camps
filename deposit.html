@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WDPCDKNL');</script>
+<!-- End Google Tag Manager -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>Complete Your $30 Deposit — Forest Cliff Camps</title>
@@ -160,6 +167,10 @@ body{background:var(--cream);font-family:'Outfit',sans-serif;color:var(--dark);-
 </style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDPCDKNL"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager -->
 
 <!-- ═══ TOP BAR ═══ -->
 <div class="top-bar">
@@ -371,7 +382,7 @@ async function handlePayment() {
       }).catch(err => console.warn('Webhook error:', err));
     }
 
-    setTimeout(() => showSuccess(), 1500);
+    setTimeout(() => showSuccess('demo_' + Date.now()), 1500);
     return;
   }
 
@@ -462,7 +473,7 @@ async function handlePayment() {
     }
 
     console.log('→ Payment successful:', paymentIntent.id);
-    showSuccess();
+    showSuccess(paymentIntent.id);
 
   } catch (err) {
     errorEl.textContent = 'Something went wrong. Please try again or call 519-913-2744.';
@@ -474,7 +485,7 @@ async function handlePayment() {
 }
 
 /* ═══ SUCCESS ═══ */
-function showSuccess() {
+function showSuccess(transactionId) {
   // Track conversion in demo mode too — CAPI + browser pixel (deduped)
   sendCAPI('Purchase', {
     em: leadData.email,
@@ -494,6 +505,14 @@ function showSuccess() {
     amount: CONFIG.DEPOSIT,
     program: leadData.program,
     child_name: leadData.childName
+  });
+
+  // GA4 standard event — purchase
+  window.dataLayer.push({
+    event: 'purchase',
+    value: CONFIG.DEPOSIT,
+    currency: 'CAD',
+    transaction_id: transactionId || ('demo_' + Date.now())
   });
 
   const section = document.getElementById('paySection');
