@@ -12,12 +12,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>Your 2026 Parent Handbook — Forest Cliff Camps</title>
 <meta name="description" content="Everything you need to know about Forest Cliff Camps — safety, schedules, what to pack, and how to register. Download the 2026 Parent Handbook.">
-<link rel="canonical" href="https://fccamps.ca/handbook">
+<link rel="canonical" href="https://www.fccamps.ca/handbook">
 
 <!-- Open Graph -->
 <meta property="og:title" content="Your 2026 Parent Handbook — Forest Cliff Camps">
 <meta property="og:description" content="Everything you need to know before camp. Safety, staff ratios, daily schedule, what to pack — plus register for Summer 2026.">
-<meta property="og:image" content="fc-hero.jpg">
+<meta property="og:image" content="https://www.fccamps.ca/fc-hero.jpg">
 <meta property="og:type" content="website">
 
 <!-- ═══ META PIXEL ═══ -->
@@ -216,9 +216,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="hero-badge"><span class="dot"></span> Summer 2026 Parent Handbook</div>
     <h1>Your 2026 Parent Handbook <em>is ready.</em></h1>
     <p class="hero-sub">Everything you need to know about Forest Cliff — safety, daily life, what to pack, and how to get your child registered.</p>
-    <a href="#highlights" class="dl-btn">
+    <a href="#handbook-download" class="dl-btn">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-      See What's Inside
+      Read the Full Handbook ↓
     </a>
   </div>
 </section>
@@ -293,7 +293,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="section" id="handbook-download">
   <div class="section-label">Full handbook</div>
   <div class="section-title">Everything you need, section by section.</div>
-  <div class="section-sub">Tap any section to expand. It's all here — no PDF required.</div>
+  <div class="section-sub">Tap any section to expand.</div>
   <div class="hb-list">
 
     <!-- SAFETY -->
@@ -597,7 +597,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 
-  <a href="/" class="cta-big" id="registerBtn">Pick Your Sessions →</a>
+  <a href="/register" class="cta-big" id="registerBtn">Pick Your Sessions →</a>
   <p class="cta-sub">Takes 30 seconds. Just your info + preferred weeks.</p>
 </div>
 
@@ -607,7 +607,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="final-cta-inner">
     <h2>2914 families already in.<br>Your child's week is waiting.</h2>
     <p>Register now, pick your dates, and we'll handle the rest.</p>
-    <a href="/" class="cta-big">Reserve Their Spot →</a>
+    <a href="/register" class="cta-big">Reserve Their Spot →</a>
   </div>
 </div>
 
@@ -616,7 +616,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ═══ STICKY MOBILE CTA ═══ -->
 <div class="sticky-cta" id="stickyCta">
-  <a href="/" id="stickyLink">Reserve Their Spot →</a>
+  <a href="/register" id="stickyLink">Reserve Their Spot →</a>
   <div class="st">Takes 30 seconds · Pick your preferred weeks</div>
 </div>
 
@@ -650,7 +650,7 @@ if (leadName) {
 
 // ═══ BUILD REGISTER URL WITH PRE-FILLED DATA ═══
 function buildRegisterUrl() {
-  const url = new URL('/', window.location.origin);
+  const url = new URL('/register', window.location.origin);
   // Pass through any lead data so the form can be pre-filled
   if (leadEmail) url.searchParams.set('email', leadEmail);
   if (leadName) url.searchParams.set('name', leadName);
@@ -716,6 +716,16 @@ if (stickyEl && heroSection) {
   }, { threshold: 0.1 });
   obs.observe(heroSection);
 }
+
+// ═══ ACCORDION SECTION TRACKING ═══
+document.querySelectorAll('details').forEach(function(detail) {
+  detail.addEventListener('toggle', function() {
+    if (this.open) {
+      var sectionName = this.querySelector('summary').textContent.trim();
+      sendCAPI('ViewContent', {}, { content_name: 'Handbook Section: ' + sectionName });
+    }
+  });
+});
 
 </script>
 </body>
