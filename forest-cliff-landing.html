@@ -272,6 +272,7 @@ function go(){
   document.getElementById("cta").innerHTML='<div class="spinner"></div>';
 
   const payload={
+    event:"lead_capture",
     parentName:gv("p"), email:gv("e"), phone:gv("ph"),
     childName:gv("c"), childAge:gv("a"), program:prog,
     deposit:D, variant:"cold", source:"meta_ad_cold_traffic",
