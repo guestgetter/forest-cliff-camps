@@ -55,6 +55,28 @@ function sendCAPI(eventName, userData, customData) {
   }).catch(function() {});
   return eventId;
 }
+
+/**
+ * Send a server-side GA4 event via Measurement Protocol.
+ * Bypasses ad blockers for reliable conversion tracking.
+ */
+function sendGA4Event(eventName, eventParams) {
+  // Use GA client_id from _ga cookie, or generate one
+  var cookies = document.cookie.split(';').reduce(function(acc, c) {
+    var parts = c.trim().split('=');
+    acc[parts[0]] = parts.slice(1).join('=');
+    return acc;
+  }, {});
+  var gaClientId = cookies._ga ? cookies._ga.split('.').slice(2).join('.') : (Date.now() + '.' + Math.floor(Math.random() * 1e9));
+  fetch('/api/ga4-event', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      client_id: gaClientId,
+      events: [{ name: eventName, params: eventParams || {} }]
+    })
+  }).catch(function() {});
+}
 </script>
 
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&display=swap" rel="stylesheet">
@@ -507,12 +529,20 @@ function showSuccess(transactionId) {
     child_name: leadData.childName
   });
 
-  // GA4 standard event — purchase
+  // GA4 standard event — purchase (client-side via GTM)
   window.dataLayer.push({
     event: 'purchase',
     value: CONFIG.DEPOSIT,
     currency: 'CAD',
     transaction_id: transactionId || ('demo_' + Date.now())
+  });
+
+  // GA4 server-side via Measurement Protocol (ad-blocker proof)
+  sendGA4Event('purchase', {
+    currency: 'CAD',
+    value: CONFIG.DEPOSIT,
+    transaction_id: transactionId || ('demo_' + Date.now()),
+    items: [{ item_name: 'Forest Cliff Summer 2026 Deposit', item_category: leadData.program, price: CONFIG.DEPOSIT, quantity: 1 }]
   });
 
   const section = document.getElementById('paySection');

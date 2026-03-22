@@ -55,6 +55,23 @@ function sendCAPI(eventName, userData, customData) {
   }).catch(function() {});
   return eventId;
 }
+
+function sendGA4Event(eventName, eventParams) {
+  var cookies = document.cookie.split(';').reduce(function(acc, c) {
+    var parts = c.trim().split('=');
+    acc[parts[0]] = parts.slice(1).join('=');
+    return acc;
+  }, {});
+  var gaClientId = cookies._ga ? cookies._ga.split('.').slice(2).join('.') : (Date.now() + '.' + Math.floor(Math.random() * 1e9));
+  fetch('/api/ga4-event', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      client_id: gaClientId,
+      events: [{ name: eventName, params: eventParams || {} }]
+    })
+  }).catch(function() {});
+}
 </script>
 
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&display=swap" rel="stylesheet">
@@ -676,6 +693,14 @@ async function submitSelections() {
     sessions_selected: selectedSessions.size,
     session_ids: [...selectedSessions],
     program: leadData.program
+  });
+
+  // GA4 server-side via Measurement Protocol (ad-blocker proof)
+  sendGA4Event('registration_complete', {
+    sessions_selected: selectedSessions.size,
+    session_ids: [...selectedSessions].join(','),
+    program: leadData.program,
+    child_age: leadData.childAge
   });
 
   // Fire HighLevel webhook
