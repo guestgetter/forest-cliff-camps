@@ -17,8 +17,8 @@ module.exports = async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const measurementId = process.env.GA4_MEASUREMENT_ID;
-  const apiSecret = process.env.GA4_API_SECRET;
+  const measurementId = process.env.GA4_MEASUREMENT_ID_FOREST_CLIFF || process.env.GA4_MEASUREMENT_ID;
+  const apiSecret = process.env.GA4_API_SECRET_FOREST_CLIFF || process.env.GA4_API_SECRET;
 
   if (!measurementId || !apiSecret) {
     return res.status(500).json({ error: 'GA4 Measurement Protocol not configured' });
