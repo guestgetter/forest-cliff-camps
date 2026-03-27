@@ -668,7 +668,7 @@ async function submitSelections() {
   const payload = {
     event: 'dates_selected',
     ...leadData,
-    selected_sessions: selectedDetails,
+    selected_sessions: selectedDetails.map(s => s.name).join(', '),
     session_count: selectedSessions.size,
     timestamp: new Date().toISOString()
   };
