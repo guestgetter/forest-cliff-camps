@@ -26,6 +26,9 @@ module.exports = async function handler(req, res) {
 
   const { client_id, events } = req.body || {};
 
+  // Log event payloads for debugging/recovery
+  console.log('GA4 event:', JSON.stringify({ client_id, events, referer: req.headers?.referer }));
+
   if (!client_id || !events || !Array.isArray(events) || events.length === 0) {
     return res.status(400).json({ error: 'client_id and events[] required' });
   }
